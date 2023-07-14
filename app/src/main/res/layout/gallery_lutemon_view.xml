@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    android:layout_marginBottom="6dp">
+
+    <ImageView
+        android:id="@+id/imgGalleryLutemon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@android:drawable/btn_star" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtGalleryLutemonName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name" />
+
+        <TextView
+            android:id="@+id/txtGalleryLutemonAttack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Attack: 7" />
+
+        <TextView
+            android:id="@+id/txtGalleryLutemonDefend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Defend: 6" />
+
+        <TextView
+            android:id="@+id/txtGalleryLutemonExp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Experience: 3" />
+
+        <TextView
+            android:id="@+id/txtGalleryLutemonHealth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Health: 13" />
+
+        <TextView
+            android:id="@+id/txtGalleryLutemonVictories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Victories: 2" />
+
+        <TextView
+            android:id="@+id/txtGalleryLutemonLoses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Loses: 0" />
+
+
+    </LinearLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="lightturquoise">#FF83FDFD</color>
+    <color name="lightblue">#CCEEFF</color>
+    <color name="lightgreen">#BBEECC</color>
+    <color name="lightpink">#FFBBFF</color>
+    <color name="lightpurple">#DCAAFB</color>
+    <color name="mediumturquoise">#106983</color>
+    <color name="mediumblue">#FF182E7C</color>
+    <color name="mediumgreen">#FF29492D</color>
+    <color name="mediumpink">#DA0A94</color>
+    <color name="mediumpurple">#FF530E85</color>
+
+
+</resources>
