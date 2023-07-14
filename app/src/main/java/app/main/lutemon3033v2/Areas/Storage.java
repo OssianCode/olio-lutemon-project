@@ -9,7 +9,6 @@ import app.main.lutemon3033v2.Lutemons.Lutemon;
 
 public abstract class Storage {
     public String name;
-
     public ArrayList<Lutemon> lutemons = new ArrayList<>();
 
     public Storage(String name) {
@@ -20,21 +19,20 @@ public abstract class Storage {
         lutemons.add(lutemon);
     }
 
+    // Returns wanted Lutemon, removes from area
+    // Used when moving a Lutemon from an area to another
     public Lutemon getLutemon(int id) {
-
-        return lutemons.get(id);
+        return lutemons.remove(id);
     }
 
     public void listLutemons(){
-
+        //TODO: is this needed? list?
     }
 
     public void saveLutemons(Context context) {
-
     }
 
     public void loadLutemons(Context context) {
-
     }
 
     public ArrayList<Lutemon> getLutemons() {

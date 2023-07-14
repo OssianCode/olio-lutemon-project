@@ -8,7 +8,6 @@
     android:background="@color/lightgreen"
     tools:context=".fragments.FragmentTrain">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constBattle"

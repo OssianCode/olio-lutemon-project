@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         //Graveyard graveyard = Graveyard.getInstance();
 
         //For testing create Lutemons
-        Lutemon lutemonPink = new Pink("PinkyPastel", 1);
+       /*Lutemon lutemonPink = new Pink("PinkyPastel", 1);
 
         System.out.println("Pinkki luotu " +  lutemonPink.getName());
 
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         home.saveLutemons(context);
 
-        System.out.println("Save lutemons ohi");
+        System.out.println("Save lutemons ohi");*/
 
         home.loadLutemons(context);
 

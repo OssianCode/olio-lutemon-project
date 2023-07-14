@@ -2,6 +2,8 @@ package app.main.lutemon3033v2.Areas;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -32,7 +34,7 @@ public class Home extends Storage {
         addLutemon(lutemon);
     }
 
-    public void saveLutemons(Context context){
+    public void saveLutemons(@NonNull Context context){
 
         System.out.println("Home - save lutemons ");
         try {
@@ -51,7 +53,7 @@ public class Home extends Storage {
 
     }
 
-    public void loadUsers(Context context) {
+    public void loadLutemons(@NonNull Context context) {
 
 
         //System.out.println("load users");
@@ -59,6 +61,7 @@ public class Home extends Storage {
             //System.out.println("load users try");
             ObjectInputStream lutemonReader = new ObjectInputStream(context.openFileInput("lutemons-home.data"));
             lutemons = (ArrayList<Lutemon>) lutemonReader.readObject();
+            lutemonReader.close();
 
             //System.out.println("load users ok");
         } catch (ClassNotFoundException e) {
