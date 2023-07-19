@@ -1,5 +1,7 @@
 package app.main.lutemon3033v2;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -18,6 +20,7 @@ public class TabPagerAdapter extends FragmentStateAdapter {
     @NonNull
     @Override
     public Fragment createFragment(int position) {
+
         switch (position){
             case 0:
                 return new FragmentGallery();

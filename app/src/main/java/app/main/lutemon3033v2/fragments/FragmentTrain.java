@@ -40,16 +40,9 @@ public class FragmentTrain extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_train, container, false);
 
-        //TODO: Training area - TRAIN add training points (what logic?)
-        //TODO: radiobuttons lutemons at training area
-        //TODO: move home
-        //TODO: move to battle
-
-
         makeRadioButtons(view);
 
         makeButtonOnClic(view);
-
 
         return view;
     }
@@ -67,20 +60,20 @@ public class FragmentTrain extends Fragment {
         if (rgTrainingLutemons == null) {
             /*RadioGroup*/
             System.out.println( "Fragment Training - radioB == null");
-            rgTrainingLutemons = (RadioGroup) view.findViewById(R.id.radioGroupTraining); //TODO: test viev changed
+            rgTrainingLutemons = (RadioGroup) view.findViewById(R.id.radioGroupTraining);
 
         }
 
         if (rgTrainingLutemons == null) {
-            System.out.println( "Fragment Training - Radio buttonit NULL Ei poisteta!!");
+            System.out.println( "Fragment Training - Radio buttons NULL no removeAllViews() !!");
 
         }
         else {
 
-            System.out.println( "Fragment Training 1 - buttonit OLI OLEMASSA");
+            System.out.println( "Fragment Training 1 - buttons not null");
             rgTrainingLutemons.removeAllViews();
 
-            System.out.println( "Fragment Training 2 - buttonit ");
+            System.out.println( "Fragment Training 2 - buttons ");
 
             //RadioGroup rgTrainingLutemons = view.findViewById(R.id.radioGroupTraining);
             //rgTrainingLutemons.removeAllViews();
@@ -89,7 +82,7 @@ public class FragmentTrain extends Fragment {
             int i = 0;
             for (Lutemon lutemon : lutemons) {
 
-                System.out.println( "Fragment Training 3 - btn LOOPPI i: " + i);
+                System.out.println( "Fragment Training 3 - btn LOOP i: " + i);
 
                 rbTrainingLutemon = new RadioButton(view.getContext());
                 rbTrainingLutemon.setText(lutemon.getName() + " " + lutemon.getColor()+ " XP: " + lutemon.getExperience());
@@ -97,7 +90,7 @@ public class FragmentTrain extends Fragment {
                 rgTrainingLutemons.addView(rbTrainingLutemon);
             }
 
-            System.out.println( "Fragment Training 4 - btn LOOPPI ohi");
+            System.out.println( "Fragment Training 4 - btn LOOP fin");
 
         }
 
@@ -107,7 +100,6 @@ public class FragmentTrain extends Fragment {
 
 
         Button btnTrainLut = (Button) view.findViewById(R.id.btnTrain);
-        //TODO: FIX TRAINING
         Button btnTrainToHome = (Button) view.findViewById(R.id.btnTrainReturnResting);
         Button btnTrainToBattle = (Button) view.findViewById(R.id.btnTrainToBattle);
 
@@ -116,8 +108,6 @@ public class FragmentTrain extends Fragment {
         {
             public void onClick(View view) {
 
-                //System.out.println("Training");
-                //TODO: Get selected Lutemon and add training
 
                 if (view.getId() == R.id.btnTrain) {
                     //System.out.println("training button");
@@ -228,17 +218,15 @@ public class FragmentTrain extends Fragment {
     }
 
 
-    public void refresh(View view) {
+    private void refresh(View view) {
 
-        //TODO: FIX go to training CAN YOU SUBMIT A PARAMETER TO CHOOSE TAB?
         //System.out.println("REFRESH fragment training  1");
 
         Intent intent = new Intent(view.getContext(), TabMainActivity.class);
+        intent.putExtra("tabName","training");
+        intent.putExtra("tabNbr",2);
         startActivity(intent);
 
-        //System.out.println("REFRESH fragment training  METHOD 2");
-
     }
-
 
 }

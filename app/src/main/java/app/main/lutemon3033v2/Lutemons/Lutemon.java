@@ -33,13 +33,50 @@ public class Lutemon implements Serializable {
 
     public void battleDefence (Lutemon lutemon) {
 
+
+        int damage = lutemon.battleAttack() - defence;
+
+        System.out.println("Lutemon " + name + " defends with power " + defence);
+        System.out.println("Total damage to Lutemon " + name + " is " + damage);
+
+        if (damage > 0 ) {
+
+            health = health - damage;
+        }
+        else {
+            System.out.println("Lutemon " + lutemon.getName() + " missed");
+        }
+
+        System.out.println("Lutemon " + name + " health is " + health);
+
+
     }
     public int battleAttack(){
-        return 0;
+
+        int attackPower = 0;
+
+        if ((int) (Math.random() * 10) > 4 ) {
+
+
+            attackPower = (attack + experience)  + (int) (Math.random() + Math.random() + Math.random() + Math.random());
+
+            System.out.println("Lutemon " + name + " attacks with power V1 " + attackPower);
+
+        }
+        else {
+
+            attackPower = (attack + experience)  - (int) (Math.random() + Math.random() );
+            System.out.println("Lutemon " + name + " attacks with power V2 " + attackPower);
+
+
+
+        }
+
+        //System.out.println("Lutemon " + name + " attacks with power " + attackPower);
+
+        return attackPower;
     }
-    /*public int getNumberOfCreatedLutemons(){
-        return 0;
-    }*/
+
     public String getName() {
         return name;
     }

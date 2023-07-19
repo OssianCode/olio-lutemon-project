@@ -13,17 +13,22 @@ import android.widget.RadioGroup;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import app.main.lutemon3033v2.Areas.BattleField;
+import app.main.lutemon3033v2.Areas.Graveyard;
 import app.main.lutemon3033v2.Areas.Home;
 import app.main.lutemon3033v2.Areas.TrainingArena;
+import app.main.lutemon3033v2.Lutemons.Green;
 import app.main.lutemon3033v2.Lutemons.Lutemon;
+import app.main.lutemon3033v2.Lutemons.White;
 import app.main.lutemon3033v2.R;
 import app.main.lutemon3033v2.TabMainActivity;
 
 
 public class FragmentBattle extends Fragment {
 
+    RadioGroup rgBattleLutemons = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +52,7 @@ public class FragmentBattle extends Fragment {
         //TODO: move to training
 
 
-        makeRadioButtons(view);
+        makeCheckBoxes(view);
 
         makeButtonOnClic(view);
 
@@ -55,15 +60,16 @@ public class FragmentBattle extends Fragment {
     }
 
 
-    private void makeRadioButtons(View view) {
+    private void makeCheckBoxes(View view) {
 
         BattleField battleField = BattleField.getInstance();
 
         battleField.loadLutemons(view.getContext());
         ArrayList<Lutemon> lutemons = battleField.getLutemons();
 
-        RadioGroup rgBattleLutemons = view.findViewById(R.id.radioGroupBattle);
-        rgBattleLutemons.removeAllViews();
+        /*
+        //RadioGroup rgBattleLutemons = view.findViewById(R.id.radioGroupBattle);
+        //rgBattleLutemons.removeAllViews();
 
         CheckBox cbBattleLutemon;
         int i = 0;
@@ -72,8 +78,30 @@ public class FragmentBattle extends Fragment {
             cbBattleLutemon.setText(lutemon.getName() + " " + lutemon.getColor() + " HP-XP-A-D: " + lutemon.getHealth() + "/" + lutemon.getMaxHealth()+ "-" + lutemon.getExperience()+ "-" + lutemon.getAttack() + "-" + lutemon.getDefence());
             cbBattleLutemon.setId(i++);
             rgBattleLutemons.addView(cbBattleLutemon);
+        }*/
+
+
+        //TODO: test
+        if (rgBattleLutemons == null) {
+
+            rgBattleLutemons = (RadioGroup) view.findViewById(R.id.radioGroupBattle);
         }
 
+        if (rgBattleLutemons == null) {
+        System.out.println( "Radio buttonit NULL Ei poisteta!!");
+        }
+        else {
+            rgBattleLutemons.removeAllViews();
+
+            CheckBox cbBattleLutemon;
+            int i = 0;
+            for (Lutemon lutemon : lutemons) {
+                cbBattleLutemon = new CheckBox(view.getContext());
+                cbBattleLutemon.setText(lutemon.getName() + " " + lutemon.getColor() + " HP-XP-A-D: " + lutemon.getHealth() + "/" + lutemon.getMaxHealth()+ "-" + lutemon.getExperience()+ "-" + lutemon.getAttack() + "-" + lutemon.getDefence());
+                cbBattleLutemon.setId(i++);
+                rgBattleLutemons.addView(cbBattleLutemon);
+            }
+        }
     }
 
 
@@ -92,20 +120,20 @@ public class FragmentBattle extends Fragment {
 
             public void onClick(View view)
             {
-                System.out.println("Battle");
+                //System.out.println("Battle");
                 //TODO: Get selected Lutemons and Battle
 
 
                 if (view.getId() == R.id.btnBattle) {
-                    System.out.println("BATTLE button");
+                    //System.out.println("BATTLE button");
                     lutemonBattle(view);
 
                 } else if (view.getId() == R.id.btnReturnResting) {
-                    System.out.println("Battle to HOME button");
+                    //System.out.println("Battle to HOME button");
                     lutemonBattleToHome(view);
 
                 } else if (view.getId() == R.id.btnReturnTraining) {
-                    System.out.println("Battle to Training button");
+                    //System.out.println("Battle to Training button");
                     lutemonBattleToTrainingArena(view);
 
                 }
@@ -124,6 +152,67 @@ public class FragmentBattle extends Fragment {
 
         System.out.println("FIGHT!" );
         //TODO: Find 2 checked lutemons
+        //TODO: to add XP
+        //TODO: UI
+        //TODO: Activity and pics
+        //TODO: delete or add home a lost lutemon(?)
+        //TODO: bury from graveyard (delete)
+
+        //TODO: remove this
+        //FOR TEST
+        Lutemon lutemonA1 = new White("Olio", 200);
+        Lutemon lutemonB1 = new Green("Kamu", 201);
+        BattleField.getInstance().addLutemon(lutemonA1, getContext());
+        BattleField.getInstance().addLutemon(lutemonB1, getContext());
+
+
+        Lutemon lutemonA = BattleField.getInstance().getLutemon(0, getContext());
+        Lutemon lutemonB = BattleField.getInstance().getLutemon(1, getContext());
+
+        boolean fighting = true;
+        while (fighting) {
+
+            if (lutemonB.getHealth() > 0) {
+                System.out.println("FIGHT Lutemon B attacks A ");
+                lutemonA.battleDefence(lutemonB);
+            }
+            else {
+                System.out.println("Lutemon B is dead ");
+
+                Graveyard.getInstance().addLutemon(lutemonB, getContext());
+                BattleField.getInstance().addLutemon(lutemonA, getContext());
+
+                System.out.println("Lutemon A WON! ");
+
+                fighting = false;
+            }
+
+            if (lutemonA.getHealth() > 0) {
+
+                System.out.println("Lutemon A attacks B ");
+                lutemonB.battleDefence(lutemonA);
+
+            }
+            else {
+
+                System.out.println("Lutemon A is dead ");
+
+                Graveyard.getInstance().addLutemon(lutemonA, getContext());
+                BattleField.getInstance().addLutemon(lutemonB, getContext());
+
+                System.out.println("Lutemon B WON! ");
+
+                fighting = false;
+            }
+
+        }
+
+
+
+
+        //DOES NOT WORK
+        //ArrayList<Lutemon> lutemons = findLutemons(view);
+
 
         /*RadioGroup rgTrainingLutemons = (RadioGroup) getView().findViewById(R.id.radioGroupTraining);
 
@@ -138,9 +227,9 @@ public class FragmentBattle extends Fragment {
             TrainingArena.getInstance().train(rgTrainingLutemons.getCheckedRadioButtonId());
 
             TrainingArena.getInstance().saveLutemons(getContext());
-        }
+        }*/
 
-        refresh(view);*/
+        refresh(view);
 
     }
 
@@ -148,9 +237,11 @@ public class FragmentBattle extends Fragment {
         ArrayList<Lutemon> lutemons = findLutemons(view);
 
 
+        //TODO: test
         for(Lutemon lutemon : lutemons) {
 
-            System.out.println("BattleToHome 1" + lutemon.getName());
+            //Health max out refactored to Home (Storage).addLutemon
+            /*System.out.println("BattleToHome 1" + lutemon.getName());
 
             lutemon.setHealth(2);
 
@@ -158,36 +249,13 @@ public class FragmentBattle extends Fragment {
 
             lutemon.setHealth(lutemon.getMaxHealth());
 
-            System.out.println("BattleToHome 2" + lutemon.getHealth());
+            System.out.println("BattleToHome 2" + lutemon.getHealth());*/
 
             Home.getInstance().addLutemon(lutemon, view.getContext());
 
         }
-
-
         System.out.println( "ready" );
-        TrainingArena.getInstance().listLutemons();
-
-        // FOR EACH LUTEMON
-        /*if (lutemon != null) {
-
-
-
-            System.out.println("BATTLE lutemon name " + lutemon.getName() + "list lutemons 1: ");
-
-
-            Home.getInstance().listLutemons();
-
-            Home.getInstance().addLutemon(lutemon, view.getContext());
-
-            System.out.println("BATTLE list lutemons 2: ");
-
-            Home.getInstance().listLutemons();
-        }
-        //System.out.println( "TRAINING going to  makeRadioButtons(view);" );
-
-        //Crashes  java.lang.NullPointerException: Attempt to invoke virtual method 'void android.widget.RadioGroup.removeAllViews()
-        //makeRadioButtons(view);*/
+        Home.getInstance().listLutemons();
 
         refresh(view);
 
@@ -210,36 +278,22 @@ public class FragmentBattle extends Fragment {
         System.out.println( "ready" );
         TrainingArena.getInstance().listLutemons();
 
-        // FOR EACH LUTEMON
-        /*if (lutemon != null) {
-
-            System.out.println("BATTLE lutemon name " + lutemon.getName() + " list lutemons 1: ");
-
-
-            TrainingArena.getInstance().listLutemons();
-
-            TrainingArena.getInstance().addLutemon(lutemon, view.getContext());
-
-            System.out.println("BATTLE list lutemons 2: ");
-
-            TrainingArena.getInstance().listLutemons();
-        }
-        //System.out.println( "HOME going to  makeRadioButtons(view);" );
-
-        //Crashes  java.lang.NullPointerException: Attempt to invoke virtual method 'void android.widget.RadioGroup.removeAllViews()
-        //makeRadioButtons(view);
-*/
-        System.out.println("REfresh SOON  1");
         refresh(view);
 
     }
     private ArrayList<Lutemon> findLutemons(View view) {
 
-        System.out.println("BATTLE findLutemons");
+        //System.out.println("BATTLE findLutemons");
 
 // LOOP to go through checked isChecked()
 
-        ArrayList<Lutemon> lutemons = BattleField.getInstance().getLutemons();
+        ArrayList<Lutemon> battleLutemons = BattleField.getInstance().getLutemons();
+
+        //Copy of battleLutemons
+        ArrayList<Lutemon> battleLutemons2 = battleLutemons;
+
+        //Reverse copied list
+        Collections.reverse(battleLutemons2);
 
         ArrayList<Lutemon> lutemonsChecked = new ArrayList<>();
 
@@ -254,10 +308,15 @@ public class FragmentBattle extends Fragment {
         }
 
          */
-        int i = 0;
-        for(Lutemon lutemon : lutemons) {
+        //Starting counting from last, in reverse order
+        int i = battleLutemons2.size();
+        for(Lutemon lutemon : battleLutemons2) {
 
-//TODO: FIX ERROR
+            //Starting counting from last, in reverse order
+            //index is size -1
+            i--;
+
+            //TODO: FIX ERROR - maaybe do radiobuttons to move...
             /*
             D  Shutting down VM
             2023-07-16 19:02:34.714 32719-32719 AndroidRuntime          app.main.lutemon3033v2               E  FATAL EXCEPTION: main
@@ -273,42 +332,28 @@ public class FragmentBattle extends Fragment {
 
             if (isChecked) {
 
-                System.out.println("IS CHECKED " + lutemon.getName());
+                System.out.println("IS CHECKED i " + lutemon.getName() + " " + i);
                 lutemonsChecked.add(BattleField.getInstance().getLutemon(i, view.getContext()));
 
             }
 
 
-            i++;
         }
+
+        System.out.println( "ready" );
+        BattleField.getInstance().listLutemons();
 
         return lutemonsChecked;
     }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public void refresh(View view) {
-
-        //TODO: FIX to go to battle
-        System.out.println("REFRESH METHOD 1");
+    private void refresh(View view) {
 
         Intent intent = new Intent(view.getContext(), TabMainActivity.class);
+        intent.putExtra("tabName","battle");
+        intent.putExtra("tabNbr",3);
         startActivity(intent);
-
-        System.out.println("REFRESH METHOD 2");
 
     }
 

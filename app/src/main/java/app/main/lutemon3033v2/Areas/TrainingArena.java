@@ -31,7 +31,7 @@ public class TrainingArena extends Storage {
 
         //System.out.println("TRAINING ARENA storage xp: " + lutemons.get(id).getExperience());
 
-        lutemons.get(id).setExperience(lutemons.get(id).getExperience() + 1); //TODO: test train XP
+        lutemons.get(id).setExperience(lutemons.get(id).getExperience() + 1);
 
         //System.out.println("TRAINING ARENA storage xp: " + lutemons.get(id).getExperience());
 

@@ -42,10 +42,6 @@ public class FragmentHome extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        //TODO: move to training
-        //TODO: move to battle
-        // TODO: restore health points at home
-
         makeRadioButtons(view);
 
         makeButtonOnClic(view);
@@ -60,20 +56,16 @@ public class FragmentHome extends Fragment {
 
         ArrayList<Lutemon> lutemons = home.getLutemons();
 
-        //TODO: test - try to move this elsewhere
 
         if (rgHomeLutemons == null) {
             /*RadioGroup*/
-            rgHomeLutemons = (RadioGroup) view.findViewById(R.id.radioGroupHome); //TODO: test viev changed
-
+            rgHomeLutemons = (RadioGroup) view.findViewById(R.id.radioGroupHome);
         }
 
         if (rgHomeLutemons == null) {
-            System.out.println( "Radio buttonit NULL Ei poisteta!!");
-
+            System.out.println( "Radio buttons NULL no removeAllViews()!!");
         }
         else {
-
             rgHomeLutemons.removeAllViews();
 
             RadioButton rbHomeLutemon;
@@ -85,9 +77,7 @@ public class FragmentHome extends Fragment {
                 rgHomeLutemons.addView(rbHomeLutemon);
                 i++;
             }
-
         }
-
     }
 
 
@@ -162,8 +152,6 @@ public class FragmentHome extends Fragment {
         //System.out.println("REfresh SOON  1");
         refresh(view);
         //makeRadioButtons(view);
-
-        //TODO: addLutemon and getLutemon at STORAGE MUST REMOVE from FILE!!
     }
 
 
@@ -204,36 +192,16 @@ public class FragmentHome extends Fragment {
         return lutemon;
     }
 
-    public void refresh(View view) {
+    private void refresh(View view) {
 
-        System.out.println("REFRESH METHOD 1");
-
-/*
-            Fragment fragmentHome = null;
-            fragmentHome = getParentFragmentManager().findFragmentByTag("FragmentHome");
-            final FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-            fragmentTransaction.detach(fragmentHome);
-            fragmentTransaction.attach(fragmentHome);
-            fragmentTransaction.commit();*/
-
-
-        //TODO: fix, does not work
-        /*FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.detach(this).attach(this).commit();*/
-
+        //System.out.println("REFRESH METHOD 1");
 
         Intent intent = new Intent(view.getContext(), TabMainActivity.class);
+        intent.putExtra("tabName","home");
+        intent.putExtra("tabNbr",1);
         startActivity(intent);
 
-
-        //makeRadioButtons(view);
-
-        //System.out.println("REFRESH METHOD 2");
-
     }
-
-
-
 
 }
 

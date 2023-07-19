@@ -24,32 +24,19 @@ public class MainActivity extends AppCompatActivity {
 
 
         Home home = Home.getInstance();
-        //TODO: load training and battle saved lutemons
-        //TODO: save training and battle lutemons
-
 
         home.loadLutemons(context);
-
-        System.out.println("Load lutemons ohi");
-
-        //Button btnPlayGame = findViewById(R.id.btnPlay);
-
 
 
     }
 
     public void playGame(View view){
 
-        System.out.println("Play Game button");
+        //System.out.println("Play Game button");
         Intent intent = new Intent(this, TabMainActivity.class);
         startActivity(intent);
 
     }
 
-    public void newLutemon(View view) {
-        System.out.println("New Lutemon button MAIN ACTIVITY");
-        Intent intent = new Intent(this, NewLutemonActivity.class);
-        startActivity(intent);
-    }
 
 }

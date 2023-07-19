@@ -78,4 +78,14 @@ public class Home extends Storage {
 
     }
 
+    //Override HOME addLutemon - restore health when added
+    public void addLutemon(Lutemon lutemon, Context context){
+
+        lutemon.setHealth(lutemon.getMaxHealth());
+        lutemons.add(lutemon);
+
+        saveLutemons(context);
+
+    }
+
 }

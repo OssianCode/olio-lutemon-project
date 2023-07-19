@@ -14,21 +14,36 @@ public class TabMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_main);
 
-        System.out.println("Tab main activity");
+        System.out.println("TabMainActivity onCreate ");
 
         TabLayout tabLayout = findViewById(R.id.tabArea);
         ViewPager2 fragmentArea = findViewById(R.id.fragmentArea);
         TabPagerAdapter tabPagerAdapter = new TabPagerAdapter(this);
         fragmentArea.setAdapter(tabPagerAdapter);
 
-        System.out.println("Tab main activity Areas set");
+
+        // Find if any data is passed from fragments
+        String tabName = "other";
+        int tabNbr = -1;
+        Bundle tabSelected = getIntent().getExtras();
+        if (tabSelected != null) {
+            tabName = tabSelected.getString("tabName");
+            tabNbr = tabSelected.getInt("tabNbr");
+
+            System.out.println("TabMainActivity name nbr: " + tabName + " " + tabNbr);
+
+            //Set wanted fragment
+            fragmentArea.setCurrentItem(tabNbr);
+            tabLayout.getTabAt(tabNbr).select();
+
+        }
+
 
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 fragmentArea.setCurrentItem(tab.getPosition());
-                //TODO: test, run
             }
 
             @Override

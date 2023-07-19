@@ -28,7 +28,7 @@ public class NewLutemonActivity extends AppCompatActivity {
 
     public void createNewLutemon(View view){
 
-        System.out.println("Create Lutemon button");
+        //System.out.println("Create Lutemon button");
 
         // GET DATA
         EditText editName = findViewById(R.id.editName);
@@ -38,7 +38,7 @@ public class NewLutemonActivity extends AppCompatActivity {
         int id = (int) (1 + Math.random()*5); //TODO: FIX what id? REMOVE ID TOTALLY?
         String name = editName.getText().toString();
 
-        System.out.println("New Lutemon name " + name);
+        //System.out.println("New Lutemon name " + name);
 
         //Create Lutemon
         Lutemon lutemon = null;
@@ -62,31 +62,21 @@ public class NewLutemonActivity extends AppCompatActivity {
 
         }
 
-        System.out.println("Create Lutemon created");
+        //System.out.println("Create Lutemon created");
 
         //SAVE
         Home home = Home.getInstance();
         home.createLutemon(lutemon, context);
 
-        System.out.println("Create Lutemon saved");
+        //System.out.println("Create Lutemon saved");
 
-/* // RELOCATED IN STORAGE
-        home.saveLutemons(context);
+        //TODO: Return to HOME TEST
 
-        System.out.println("Create Lutemons SAVED TO FILE"); //TODO: Save file in home.createlutemon??*/
-
-
-        //finish();
-
-
-
-
-
-        Intent intent = new Intent(this, TabMainActivity.class);
+        Intent intent = new Intent(view.getContext(), TabMainActivity.class);
+        intent.putExtra("tabName","home");
+        intent.putExtra("tabNbr",1);
         startActivity(intent);
-        //TODO: Return to HOME fragment TEST
 
     }
-
 
 }
