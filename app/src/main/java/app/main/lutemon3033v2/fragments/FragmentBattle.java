@@ -157,6 +157,8 @@ public class FragmentBattle extends Fragment {
         //TODO: Activity and pics
         //TODO: delete or add home a lost lutemon(?)
         //TODO: bury from graveyard (delete)
+        //TODO: add won battles, lost battles
+        //TODO: Add trained days(????)
 
         //TODO: remove this
         //FOR TEST

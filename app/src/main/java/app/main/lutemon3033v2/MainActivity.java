@@ -23,9 +23,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        Home home = Home.getInstance();
+        /*Home home = Home.getInstance();
 
-        home.loadLutemons(context);
+        home.loadLutemons(context);*/
+
+        //TODO: ADD stats to start page!
 
 
     }
