@@ -12,7 +12,10 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import app.main.lutemon3033v2.Areas.BattleField;
+import app.main.lutemon3033v2.Areas.Graveyard;
 import app.main.lutemon3033v2.Areas.Home;
+import app.main.lutemon3033v2.Areas.TrainingArena;
 import app.main.lutemon3033v2.Lutemons.Lutemon;
 import app.main.lutemon3033v2.LutemonListAdapter;
 import app.main.lutemon3033v2.R;
@@ -43,21 +46,35 @@ public class FragmentGallery extends Fragment {
         View view = inflater.inflate(R.layout.fragment_gallery, container, false);
 
 
+        //HOME
         Home home = Home.getInstance();
+        home.loadLutemons(view.getContext());
 
-        ArrayList<Lutemon> lutemons = home.getLutemons();
+        ArrayList<Lutemon> lutemonsAll = home.getLutemons();
 
-        //TODO: get lutemons from home, training, battle and graveyard
-        //TrainingArena trainingArena = TrainingArena.getInstance();
-        //BattleField battleField = BattleField.getInstance();
-        //Graveyard graveyard = Graveyard.getInstance();
+        //TRAINING ARENA
+        TrainingArena trainingArena = TrainingArena.getInstance();
+        trainingArena.loadLutemons(view.getContext());
 
+        lutemonsAll.addAll(trainingArena.getLutemons());
+
+        //BATTLE FIELD
+        BattleField battleField = BattleField.getInstance();
+        battleField.loadLutemons(view.getContext());
+
+        lutemonsAll.addAll(battleField.getLutemons());
+
+        //GRAVEYARD
+        Graveyard graveyard = Graveyard.getInstance();
+        graveyard.loadLutemons(view.getContext());
+
+        lutemonsAll.addAll(graveyard.getLutemons());
 
 
         recyclerView = view.findViewById(R.id.gallery_lutemon_list);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new LutemonListAdapter(view.getContext(), lutemons));
+        recyclerView.setAdapter(new LutemonListAdapter(view.getContext(), lutemonsAll));
 
 
         return view;

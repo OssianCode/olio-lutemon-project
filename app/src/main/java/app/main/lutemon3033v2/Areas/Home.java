@@ -25,23 +25,26 @@ public class Home extends Storage {
         if(home == null){
             home = new Home();
         }
+
         return home;
     }
 
-    public void createLutemon(Lutemon lutemon){
+    public void createLutemon(Lutemon lutemon, Context context){
 
 
-        addLutemon(lutemon);
+        addLutemon(lutemon, context);
+
     }
 
     public void saveLutemons(@NonNull Context context){
 
-        System.out.println("Home - save lutemons ");
+        //System.out.println("Home - save lutemons ");
         try {
-            //System.out.println("save users try");
+            //System.out.println("save home lutemons try");
             ObjectOutputStream lutemonWriter = new ObjectOutputStream(context.openFileOutput("lutemons-home.data", Context.MODE_PRIVATE));
             lutemonWriter.writeObject(lutemons);
             lutemonWriter.close();
+            //System.out.println("save home lutemons ok filesdir " + context.getFilesDir().toString());
 
 
         } catch (FileNotFoundException e) {
@@ -56,14 +59,14 @@ public class Home extends Storage {
     public void loadLutemons(@NonNull Context context) {
 
 
-        //System.out.println("load users");
+        //System.out.println("HOME Load lutemons from file");
         try {
-            //System.out.println("load users try");
+            //System.out.println("Load lutemons  try");
             ObjectInputStream lutemonReader = new ObjectInputStream(context.openFileInput("lutemons-home.data"));
             lutemons = (ArrayList<Lutemon>) lutemonReader.readObject();
             lutemonReader.close();
 
-            //System.out.println("load users ok");
+            //System.out.println("Load lutemons  ok filesdir " + context.getFilesDir().toString());
         } catch (ClassNotFoundException e) {
             System.out.println("ERROR Home- catch error 1" + e);
             //throw new RuntimeException(e);

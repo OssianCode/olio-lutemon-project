@@ -33,7 +33,7 @@ public class BattleField extends Storage {
 
     public void saveLutemons(@NonNull Context context){
 
-        System.out.println("Battle field - save lutemons ");
+        //System.out.println("Battle field - save lutemons ");
         try {
             //System.out.println("save lutemons try");
             ObjectOutputStream lutemonWriter = new ObjectOutputStream(context.openFileOutput("lutemons-battle.data", Context.MODE_PRIVATE));
@@ -62,11 +62,11 @@ public class BattleField extends Storage {
 
             //System.out.println("load lutemons ok");
         } catch (ClassNotFoundException e) {
-            System.out.println("ERROR Battle field catch error 1" + e);
+            System.out.println("ERROR Battle field catch error 1 " + e);
             //throw new RuntimeException(e);
 
         } catch (IOException e) {
-            System.out.println("ERROR Battle field - catch error 2" + e);
+            System.out.println("ERROR Battle field - catch error 2 " + e);
             //throw new RuntimeException(e);
         }
 

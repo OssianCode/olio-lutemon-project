@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <RadioGroup
-            android:id="@+id/radioGroupBattle"
+            android:id="@+id/radioGroupHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="200dp"
@@ -57,7 +57,7 @@
         </RadioGroup>
 
         <Button
-            android:id="@+id/btnTrain"
+            android:id="@+id/btnNewLutemon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|bottom"
@@ -65,26 +65,26 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.482"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnBattle" />
+            app:layout_constraintTop_toBottomOf="@+id/btnHomeMoveToBattle" />
 
         <Button
-            android:id="@+id/btnReturnResting"
+            android:id="@+id/btnHomeMoveToTraining"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
             android:text="Move to Training Arena"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupBattle" />
+            app:layout_constraintTop_toBottomOf="@+id/radioGroupHome" />
 
         <Button
-            android:id="@+id/btnBattle"
+            android:id="@+id/btnHomeMoveToBattle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Move to Battle Field"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnReturnResting" />
+            app:layout_constraintTop_toBottomOf="@+id/btnHomeMoveToTraining" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

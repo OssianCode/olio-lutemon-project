@@ -14,7 +14,7 @@
 
 
         <TextView
-            android:id="@+id/txtTrainingHeader"
+            android:id="@+id/txtBattleHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="top"
@@ -94,7 +94,7 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtTrainingHeader" />
+            app:layout_constraintTop_toBottomOf="@+id/txtBattleHeader" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -29,17 +29,23 @@ public class TrainingArena extends Storage {
 
     public void train(int id){
 
+        //System.out.println("TRAINING ARENA storage xp: " + lutemons.get(id).getExperience());
+
         lutemons.get(id).setExperience(lutemons.get(id).getExperience() + 1); //TODO: test train XP
+
+        //System.out.println("TRAINING ARENA storage xp: " + lutemons.get(id).getExperience());
+
     }
 
     public void saveLutemons(@NonNull Context context){
 
-        System.out.println("Training - save lutemons ");
+        //System.out.println("Training - save lutemons ");
         try {
             //System.out.println("save lutemons try");
             ObjectOutputStream lutemonWriter = new ObjectOutputStream(context.openFileOutput("lutemons-training.data", Context.MODE_PRIVATE));
             lutemonWriter.writeObject(lutemons);
             lutemonWriter.close();
+            //System.out.println("save lutemons ok filesdir " + context.getFilesDir().toString());
 
 
         } catch (FileNotFoundException e) {
@@ -54,20 +60,20 @@ public class TrainingArena extends Storage {
     public void loadLutemons(@NonNull Context context) {
 
 
-        //System.out.println("load lutemons");
+        //System.out.println("TRAINING load lutemons FROM FILE");
         try {
-            //System.out.println("load lutemons try");
+            //System.out.println("TRAINING load lutemons try");
             ObjectInputStream lutemonReader = new ObjectInputStream(context.openFileInput("lutemons-training.data"));
             lutemons = (ArrayList<Lutemon>) lutemonReader.readObject();
             lutemonReader.close();
 
-            //System.out.println("load lutemons ok");
+            //System.out.println("load lutemons ok filesdir " + context.getFilesDir().toString());
         } catch (ClassNotFoundException e) {
-            System.out.println("ERROR Training catch error 1" + e);
+            System.out.println("ERROR Training catch error 1 " + e);
             //throw new RuntimeException(e);
 
         } catch (IOException e) {
-            System.out.println("ERROR Training- catch error 2" + e);
+            System.out.println("ERROR Training- catch error 2 " + e);
             //throw new RuntimeException(e);
         }
 

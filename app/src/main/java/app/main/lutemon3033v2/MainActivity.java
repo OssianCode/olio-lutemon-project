@@ -27,28 +27,6 @@ public class MainActivity extends AppCompatActivity {
         //TODO: load training and battle saved lutemons
         //TODO: save training and battle lutemons
 
-        //TrainingArena trainingArena = TrainingArena.getInstance();
-        //BattleField battleField = BattleField.getInstance();
-        //Graveyard graveyard = Graveyard.getInstance();
-
-        //For testing create Lutemons
-       /*Lutemon lutemonPink = new Pink("PinkyPastel", 1);
-
-        System.out.println("Pinkki luotu " +  lutemonPink.getName());
-
-        Lutemon lutemonGreen = new Green("Greenie", 2);
-
-        Lutemon lutemonOrange = new Orange("Orangejuice", 3);
-
-        home.createLutemon(lutemonPink);
-        home.createLutemon(lutemonGreen);
-        home.createLutemon(lutemonOrange);
-
-        System.out.println("Pinkki lisätty Homeen");
-
-        home.saveLutemons(context);
-
-        System.out.println("Save lutemons ohi");*/
 
         home.loadLutemons(context);
 
@@ -67,4 +45,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public void newLutemon(View view) {
+        System.out.println("New Lutemon button MAIN ACTIVITY");
+        Intent intent = new Intent(this, NewLutemonActivity.class);
+        startActivity(intent);
+    }
+
 }
