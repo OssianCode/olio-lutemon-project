@@ -31,24 +31,40 @@ public class Lutemon implements Serializable {
         this.loses = loses;
     }
 
-    public void battleDefence (Lutemon lutemon) {
+    public String battleDefence (Lutemon lutemon) {
 
 
-        int damage = lutemon.battleAttack() - defence;
+        String defenceTxt = "";
+
+        int attackPower = lutemon.battleAttack();
+
+        int damage =  attackPower - defence;
 
         System.out.println("Lutemon " + name + " defends with power " + defence);
-        System.out.println("Total damage to Lutemon " + name + " is " + damage);
+
+        defenceTxt += lutemon.getName() + " attacks " + name + " with attack power " + attackPower + "\n";
+        defenceTxt += "Lutemon " + name + " defends with power " + defence + " \n";
 
         if (damage > 0 ) {
 
             health = health - damage;
+
+            System.out.println("Total damage to Lutemon " + name + " is " + damage + " (HP: " + health + "/" + maxHealth + ")" );
+
+            defenceTxt += "Total damage to Lutemon " + name + " is " + damage + " (HP: " + health + "/" + maxHealth + ")" + "\n";
+
         }
         else {
             System.out.println("Lutemon " + lutemon.getName() + " missed");
+
+            defenceTxt += "Lutemon " + lutemon.getName() + " missed" + " \n";
         }
 
-        System.out.println("Lutemon " + name + " health is " + health);
+        //System.out.println("Lutemon " + name + " health is " + health);
 
+        //defenceTxt += "Lutemon " + name + " health is " + health + " \n";
+
+        return defenceTxt;
 
     }
     public int battleAttack(){

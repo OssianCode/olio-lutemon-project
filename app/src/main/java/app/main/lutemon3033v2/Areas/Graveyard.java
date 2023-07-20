@@ -50,6 +50,7 @@ public class Graveyard extends Storage {
     public void loadLutemons(@NonNull Context context) {
 
 
+            //TODO: Delete graveyard file action
         //System.out.println("load lutemons");
         try {
             //System.out.println("load lutemons try");

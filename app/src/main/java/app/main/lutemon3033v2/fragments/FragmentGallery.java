@@ -66,8 +66,8 @@ public class FragmentGallery extends Fragment {
 
         //GRAVEYARD
         Graveyard graveyard = Graveyard.getInstance();
-        //graveyard.saveLutemons(view.getContext()); //TODO: for test empty graveyard
-        graveyard.loadLutemons(view.getContext()); //TODO: for test empty graveyard
+        graveyard.saveLutemons(view.getContext()); //TODO: for test empty graveyard THIS EMPTIES
+        graveyard.loadLutemons(view.getContext()); //TODO: for test empty graveyard - load empty
         lutemonsAll.addAll(graveyard.getLutemons()); //TODO: for test empty graveyard
 
 

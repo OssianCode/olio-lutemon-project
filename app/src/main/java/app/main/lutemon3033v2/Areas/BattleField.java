@@ -27,9 +27,6 @@ public class BattleField extends Storage {
         return battleField;
     }
 
-    public void fight(int id1, int id2){
-
-    }
 
     public void saveLutemons(@NonNull Context context){
 

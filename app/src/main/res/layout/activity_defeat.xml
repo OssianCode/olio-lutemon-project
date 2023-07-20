@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/imgDefeatedLut"
         android:layout_width="222dp"
         android:layout_height="274dp"
         app:layout_constraintBottom_toTopOf="@+id/btnDefeatHome"
@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btnBattle" />
 
     <Button
-        android:id="@+id/btnDefeatHome3"
+        android:id="@+id/btnDefeatBury"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
@@ -54,4 +54,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnDefeatHome" />
+
+    <TextView
+        android:id="@+id/txtLoserStats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lutemon"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnDefeatHome"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgDefeatedLut"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

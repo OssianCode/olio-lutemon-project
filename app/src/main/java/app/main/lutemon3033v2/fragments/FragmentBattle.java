@@ -19,6 +19,7 @@ import app.main.lutemon3033v2.Areas.BattleField;
 import app.main.lutemon3033v2.Areas.Graveyard;
 import app.main.lutemon3033v2.Areas.Home;
 import app.main.lutemon3033v2.Areas.TrainingArena;
+import app.main.lutemon3033v2.Battle.BattleActivity;
 import app.main.lutemon3033v2.Lutemons.Green;
 import app.main.lutemon3033v2.Lutemons.Lutemon;
 import app.main.lutemon3033v2.Lutemons.White;
@@ -150,6 +151,7 @@ public class FragmentBattle extends Fragment {
 
     private void lutemonBattle(View view) {
 
+/*
         System.out.println("FIGHT!" );
         //TODO: Find 2 checked lutemons
         //TODO: to add XP
@@ -180,6 +182,7 @@ public class FragmentBattle extends Fragment {
             }
             else {
                 System.out.println("Lutemon B is dead ");
+                lutemonB.setHealth(0);
 
                 Graveyard.getInstance().addLutemon(lutemonB, getContext());
                 BattleField.getInstance().addLutemon(lutemonA, getContext());
@@ -198,6 +201,7 @@ public class FragmentBattle extends Fragment {
             else {
 
                 System.out.println("Lutemon A is dead ");
+                lutemonA.setHealth(0);
 
                 Graveyard.getInstance().addLutemon(lutemonA, getContext());
                 BattleField.getInstance().addLutemon(lutemonB, getContext());
@@ -208,8 +212,14 @@ public class FragmentBattle extends Fragment {
             }
 
         }
+*/
+        int idA = 0; //TODO: for test set 0 and 1 - get real selected!
+        int idB = 1;
 
-
+        Intent intent = new Intent(view.getContext(), BattleActivity.class);
+        intent.putExtra("idA",idA);
+        intent.putExtra("idB",idB);
+        startActivity(intent);
 
 
         //DOES NOT WORK
@@ -231,7 +241,7 @@ public class FragmentBattle extends Fragment {
             TrainingArena.getInstance().saveLutemons(getContext());
         }*/
 
-        refresh(view);
+        //refresh(view);
 
     }
 

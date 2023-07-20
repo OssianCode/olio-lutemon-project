@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class LutemonViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView galleryLutemon;
+        ImageView galleryLutemon, imgDelete;
         TextView lutemonName, lutemonAtt, lutemonDef, lutemonXP, lutemonHealth, lutemonVictories, lutemonLoses;
 
         public LutemonViewHolder(@NonNull View itemView) {
@@ -23,6 +23,7 @@ public class LutemonViewHolder extends RecyclerView.ViewHolder{
             lutemonHealth = itemView.findViewById(R.id.txtGalleryLutemonHealth);
             lutemonVictories = itemView.findViewById(R.id.txtGalleryLutemonVictories);
             lutemonLoses = itemView.findViewById(R.id.txtGalleryLutemonLoses);
+            imgDelete = itemView.findViewById(R.id.imgDelete);
 
         }
     }

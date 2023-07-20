@@ -7,18 +7,6 @@
     tools:context=".Battle.VictoryActivity">
 
     <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:text="Total 5 victories!"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnDefeatHome2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-    <TextView
         android:id="@+id/txtVictoryHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/imgWinner"
         android:layout_width="222dp"
         android:layout_height="274dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -44,19 +32,8 @@
         app:layout_constraintVertical_bias="0.236"
         app:srcCompat="@drawable/orangesmallclear" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+1 XP"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnDefeatHome2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
-
     <Button
-        android:id="@+id/btnDefeatHome2"
+        android:id="@+id/btnToBattleField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
@@ -65,10 +42,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnBattle" />
+        app:layout_constraintTop_toBottomOf="@+id/txtWinnerStats" />
 
     <Button
-        android:id="@+id/btnDefeatHome4"
+        android:id="@+id/btnToHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
@@ -77,5 +54,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDefeatHome2" />
+        app:layout_constraintTop_toBottomOf="@+id/btnToBattleField" />
+
+    <TextView
+        android:id="@+id/txtWinnerStats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:fontFamily="sans-serif"
+        android:text="Winner"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgWinner" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -39,6 +39,15 @@ public class LutemonListAdapter extends RecyclerView.Adapter<LutemonViewHolder> 
         holder.lutemonVictories.setText("Victories: " + lutemons.get(position).getVictories());
         holder.lutemonLoses.setText("Loses: " + lutemons.get(position).getLoses());
 
+        if (lutemons.get(position).getHealth() <= 0 ){
+            holder.imgDelete.setImageResource(R.drawable.ripimagesmall);
+        }
+        else {
+            holder.imgDelete.setImageResource(0);
+        }
+
+
+        //TODO: Grave stone activity - delete lutemon in gallery
 
     }
 

@@ -35,7 +35,7 @@ public class NewLutemonActivity extends AppCompatActivity {
         RadioGroup rgColor = findViewById(R.id.radioGroupColor) ;
         RadioButton rbNewLutemonColor = findViewById(rgColor.getCheckedRadioButtonId());
         String selectedColor = rbNewLutemonColor.getText().toString();
-        int id = (int) (1 + Math.random()*5); //TODO: FIX what id? REMOVE ID TOTALLY?
+        int id = (int) (100*Math.random() + Math.random()*5 + Math.random()); //TODO: REMOVE ID TOTALLY? is this used?
         String name = editName.getText().toString();
 
         //System.out.println("New Lutemon name " + name);
@@ -69,8 +69,6 @@ public class NewLutemonActivity extends AppCompatActivity {
         home.createLutemon(lutemon, context);
 
         //System.out.println("Create Lutemon saved");
-
-        //TODO: Return to HOME TEST
 
         Intent intent = new Intent(view.getContext(), TabMainActivity.class);
         intent.putExtra("tabName","home");

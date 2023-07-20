@@ -130,6 +130,8 @@ public class FragmentHome extends Fragment {
     private void lutemonToTrainingArena(View view) {
         Lutemon lutemon = findLutemon(view);
 
+        //TODO: fix weird bug, sometimes lutemons double(?) when hitting move to training? maybe battle too? is it only home?
+
         if (lutemon != null) {
 
 
