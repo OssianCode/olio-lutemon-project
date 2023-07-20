@@ -72,7 +72,7 @@ public class FragmentHome extends Fragment {
             int i = 0;
             for (Lutemon lutemon : lutemons) {
                 rbHomeLutemon = new RadioButton(view.getContext());
-                rbHomeLutemon.setText(lutemon.getName() + " " + lutemon.getColor()+ " HP: " + lutemon.getHealth() + "/" + lutemon.getMaxHealth());
+                rbHomeLutemon.setText(lutemon.getName() + " " + lutemon.getColor() + " HP: " + lutemon.getHealth() + "/" + lutemon.getMaxHealth() + " XP: " + lutemon.getExperience()+ " A: " + lutemon.getAttack() + " D: "  + lutemon.getDefence());
                 rbHomeLutemon.setId(i);
                 rgHomeLutemons.addView(rbHomeLutemon);
                 i++;

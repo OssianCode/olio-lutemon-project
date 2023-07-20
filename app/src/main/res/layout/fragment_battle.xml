@@ -36,20 +36,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <CheckBox
-                android:id="@+id/radioButton"
+            <RadioButton
+                android:id="@+id/rbBattleLutemon1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pink Lutemon Health 7/20" />
 
-            <CheckBox
-                android:id="@+id/radioButton3"
+            <RadioButton
+                android:id="@+id/rbBattleLutemon2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Green Lutemon Health 3/15" />
 
-            <CheckBox
-                android:id="@+id/radioButton2"
+            <RadioButton
+                android:id="@+id/rbBattleLutemon3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Orange Lutemon Health 18/18" />
@@ -89,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Select 2 for a battle"
+            android:text="Select 1st for a battle or to move"
             android:textColor="@color/mediumblue"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"

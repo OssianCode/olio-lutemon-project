@@ -40,9 +40,12 @@ public abstract class Storage {
         System.out.println("STORAGE LIST LUTEMONS Storage name: " + name);
         int i = 0;
         for(Lutemon lutemon : lutemons){
-            i++;
+
 
             System.out.println(name + " " + i + ": " + lutemon.getName());
+
+            i++;
+
         }
 
 

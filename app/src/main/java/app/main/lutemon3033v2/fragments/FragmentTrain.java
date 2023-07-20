@@ -85,9 +85,10 @@ public class FragmentTrain extends Fragment {
                 System.out.println( "Fragment Training 3 - btn LOOP i: " + i);
 
                 rbTrainingLutemon = new RadioButton(view.getContext());
-                rbTrainingLutemon.setText(lutemon.getName() + " " + lutemon.getColor()+ " XP: " + lutemon.getExperience());
-                rbTrainingLutemon.setId(i++);
+                rbTrainingLutemon.setText(lutemon.getName() + " " + lutemon.getColor() + " HP: " + lutemon.getHealth() + "/" + lutemon.getMaxHealth() + " XP: " + lutemon.getExperience()+ " A: " + lutemon.getAttack() + " D: "  + lutemon.getDefence());
+                rbTrainingLutemon.setId(i);
                 rgTrainingLutemons.addView(rbTrainingLutemon);
+                i++;
             }
 
             System.out.println( "Fragment Training 4 - btn LOOP fin");
@@ -160,25 +161,14 @@ public class FragmentTrain extends Fragment {
 
         if (lutemon != null) {
 
-
-            //System.out.println("TRAINING lutemon name " + lutemon.getName() + " list lutemons 1: ");
-
-
             Home.getInstance().listLutemons();
 
             Home.getInstance().addLutemon(lutemon, view.getContext());
 
-            //System.out.println("TRAINING list lutemons 2: ");
-
             Home.getInstance().listLutemons();
         }
-        //System.out.println( "TRAINING going to  makeRadioButtons(view);" );
-
-        //Crashes  java.lang.NullPointerException: Attempt to invoke virtual method 'void android.widget.RadioGroup.removeAllViews()
-        //makeRadioButtons(view);
 
         refresh(view);
-        //makeRadioButtons(view);
 
     }
 
@@ -191,11 +181,7 @@ public class FragmentTrain extends Fragment {
         if (lutemon != null) {
             BattleField.getInstance().addLutemon(lutemon, view.getContext());
         }
-        //System.out.println( "HOME going to  makeRadioButtons(view);" );
 
-        //Crashes  java.lang.NullPointerException: Attempt to invoke virtual method 'void android.widget.RadioGroup.removeAllViews()
-
-        //makeRadioButtons(view);
         refresh(view);
     }
     private Lutemon findLutemon(View view) {

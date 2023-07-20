@@ -71,10 +71,11 @@ public class VictoryActivity extends AppCompatActivity implements View.OnClickLi
             Home.getInstance().addLutemon(winner, this);
         }
 
+        else if (view.getId() == R.id.btnToBattleField) {
 
-        /*if (view.getId() == R.id.btnToBattleField) {
+            BattleField.getInstance().addLutemon(winner, this);
 
-        }*/
+        }
 
         //After any button click activate next screen
 
