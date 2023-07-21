@@ -10,16 +10,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import app.main.lutemon3033v2.Areas.BattleField;
 import app.main.lutemon3033v2.Areas.BattleStorage;
-import app.main.lutemon3033v2.Areas.Graveyard;
 import app.main.lutemon3033v2.Lutemons.Black;
 import app.main.lutemon3033v2.Lutemons.Green;
 import app.main.lutemon3033v2.Lutemons.Lutemon;
 import app.main.lutemon3033v2.Lutemons.Orange;
 import app.main.lutemon3033v2.Lutemons.Pink;
 import app.main.lutemon3033v2.Lutemons.White;
-import app.main.lutemon3033v2.MainActivity;
 import app.main.lutemon3033v2.R;
 import app.main.lutemon3033v2.TabMainActivity;
 
@@ -36,8 +33,7 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     private int round = 0;
     private int lutemonPic = 0;
 
-    // private int idA = -1;
-   // private int idB = -1;
+    private String nextInTurn = "A"; //Start value is A
 
 
 
@@ -156,9 +152,24 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View view) {
 
-        if (btnActivity.getText().toString().equals("Go!") || btnActivity.getText().toString().equals("Next round")) {
+        if (btnActivity.getText().toString().equals("Go!") || btnActivity.getText().toString().equals("Next turn")) {
 
-            lutemonBattle(view);
+            //lutemonBattle(view);
+
+            if (nextInTurn.equals("A")) {
+                battleNextInTurnA(view);
+            }
+            else if (nextInTurn.equals("B")) {
+                battleNextInTurnB(view);
+            }
+            else {
+                System.out.println("ERROR in Battle, who's turn it is?" );
+            }
+
+        }
+        else if (btnActivity.getText().toString().equals("END OF BATTLE")) {
+
+            endOfBattle(view);
         }
         else if (btnActivity.getText().toString().equals("Next")) {
 
@@ -171,8 +182,10 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-
+    //lutemonBattle (OLD)
     public void lutemonBattle(View view) {
+
+        System.out.println("THIS SHOULD NOT BE USED, USE THE battleNextInTurn A or B INSTEAD" );
 
         if (lutemonA == null || lutemonB == null) {
             System.out.println("No lutemons found, lutemons null" );
@@ -181,9 +194,10 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         System.out.println("FIGHT!" );
-        //TODO: buttons "attack ->" "<-- attack" and show picture
 
         String battleText = "";
+
+        //Next in turn A
 
         boolean fighting = true;
         while (fighting) {
@@ -194,14 +208,17 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
             if (lutemonA.getHealth() > 0) {
                 System.out.println("FIGHT Lutemon A attacks B ");
 
-                //TODO: TEST
                 lutemonPic = getPic(lutemonA, "fightFlipped");
                 imgLutemonA.setImageResource(lutemonPic);
 
                 lutemonPic = getPic(lutemonB, "");
                 imgLutemonB.setImageResource(lutemonPic);
 
+                //Attack
                 battleText += lutemonB.battleDefence(lutemonA);
+
+                //Next in turn B
+                nextInTurn = "B";
 
                 txtBattleText.setText(battleText);
 
@@ -212,15 +229,12 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                 // B WON A LOST
                 System.out.println("Lutemon A is dead ");
 
-                //TODO: TEST
                 lutemonPic = getPic(lutemonA, "dead");
                 imgLutemonA.setImageResource(lutemonPic);
 
                 battleText += "Lutemon " + lutemonA.getName() + " is dead \n";
                 txtBattleText.setText(battleText);
 
-
-                //TODO: TEST
                 lutemonPic = getPic(lutemonB, "winner");
                 imgLutemonB.setImageResource(lutemonPic);
 
@@ -251,19 +265,24 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             }
 
+            //Next in turn B
+
             if (lutemonB.getHealth() > 0) {
 
                 System.out.println("Lutemon B attacks A ");
                 //battleText += lutemonB.getName() + " attacks " + lutemonA.getName()+ " \n";
 
-                //TODO: TEST
                 lutemonPic = getPic(lutemonB, "fight");
                 imgLutemonB.setImageResource(lutemonPic);
                 lutemonPic = getPic(lutemonA, "flipped");
                 imgLutemonA.setImageResource(lutemonPic);
 
 
+                //Attack
                 battleText += lutemonA.battleDefence(lutemonB);
+
+                //Next in turn A
+                nextInTurn = "A";
 
                 txtBattleText.setText(battleText);
 
@@ -272,10 +291,8 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 
                     System.out.println("Lutemon A is dead ");
 
-
-                    //TODO: TEST
                     lutemonPic = getPic(lutemonA, "dead");
-                    imgLutemonB.setImageResource(lutemonPic);
+                    imgLutemonA.setImageResource(lutemonPic);
                     lutemonPic = getPic(lutemonB, "winner");
                     imgLutemonB.setImageResource(lutemonPic);
 
@@ -310,8 +327,10 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                 updateStatsA();
                 updateStatsB();
 
-                btnActivity.setText("Next round");
-                break; //TEST, go to next round
+                //Next in turn A
+
+                btnActivity.setText("Next turn");
+                break; //TEST, go to next turn
 
 
             }
@@ -319,7 +338,6 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 
                 // A WON B LOST
 
-                //TODO: TEST
                 lutemonPic = getPic(lutemonA, "winner");
                 imgLutemonB.setImageResource(lutemonPic);
                 lutemonPic = getPic(lutemonB, "dead");
@@ -359,10 +377,280 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 
         }
 
+    } //END lutemonBattle (OLD)
 
-        //btnActivity.setText("Next");
+
+    private void battleNextInTurnA(View view) {
+
+        if (lutemonA == null || lutemonB == null) {
+            System.out.println("No lutemons found, lutemons null" );
+            returnToBattle(view);
+            return;
+        }
+
+        System.out.println("FIGHT! A's turn!" );
+
+        String battleText = "";
+
+        //Next in turn A
+
+        boolean fighting = true;
+        /*while (fighting) {*/
+
+        round++;
+        battleText = "ROUND " + round + "! " + " \n" + " \n"; //TEST: remove plus, just is // Make one round at a time
+
+        if (lutemonA.getHealth() > 0) {
+            System.out.println("FIGHT Lutemon A attacks B ");
+
+            lutemonPic = getPic(lutemonA, "fightFlipped");
+            imgLutemonA.setImageResource(lutemonPic);
+
+            lutemonPic = getPic(lutemonB, "");
+            imgLutemonB.setImageResource(lutemonPic);
+
+            //Attack
+            battleText += lutemonB.battleDefence(lutemonA);
+
+            //Update stats
+            updateStatsA();
+            updateStatsB();
+
+            //Next in turn B
+            nextInTurn = "B";
+
+            txtBattleText.setText(battleText);
+
+            //IF LUTEMON B DEAD!!! DO NOT CONTINUE FIGHT!!
+            if (lutemonB.getHealth() <= 0) {
+                btnActivity.setText("END OF BATTLE");
+                //endOfBattle(view);
+                return;
+            }
+
+            btnActivity.setText("Next turn");
+
+        }
+        else {
+
+            endOfBattle(view);
+            //This maybe never happens?
+            // Leave it here for now to be sure no dead lutemons fight
+            // B WON A LOST
+            /*System.out.println("Lutemon A is dead ");
+
+            lutemonPic = getPic(lutemonA, "dead");
+            imgLutemonA.setImageResource(lutemonPic);
+
+            battleText += "Lutemon " + lutemonA.getName() + " is dead \n";
+            txtBattleText.setText(battleText);
+
+            lutemonPic = getPic(lutemonB, "winner");
+            imgLutemonB.setImageResource(lutemonPic);
+
+            System.out.println("Lutemon B WON!");
+            battleText += "Lutemon " + lutemonB.getName() + " WON! \n";
+            txtBattleText.setText(battleText);
+
+
+            //Update stats
+            //lutemonA.setHealth(0);
+
+            //Update visible stats before loses, victories and xp
+            updateStatsA();
+            updateStatsB();
+
+            lutemonA.setLoses(lutemonA.getLoses() + 1);
+            lutemonB.setVictories(lutemonB.getVictories() + 1);
+            lutemonB.setExperience(lutemonB.getExperience() + 1);
+
+
+            BattleStorage.getInstance().setWinner(lutemonB);
+            BattleStorage.getInstance().setLoser(lutemonA);
+            BattleStorage.getInstance().setLutemonA(null);
+            BattleStorage.getInstance().setLutemonB(null);
+
+            btnActivity.setText("Next");
+            fighting = false;
+            //break;*/
+        }
+
 
     }
+
+    private void battleNextInTurnB(View view) {
+
+        //Next in turn B ***********************
+        if (lutemonA == null || lutemonB == null) {
+            System.out.println("No lutemons found, lutemons null" );
+            returnToBattle(view);
+            return;
+        }
+
+        System.out.println("FIGHT! B's turn!" );
+
+        String battleText = "";
+
+        //boolean fighting = true;
+
+        if (lutemonB.getHealth() > 0) {
+
+            System.out.println("Lutemon B attacks A ");
+            //battleText += lutemonB.getName() + " attacks " + lutemonA.getName()+ " \n";
+
+            lutemonPic = getPic(lutemonB, "fight");
+            imgLutemonB.setImageResource(lutemonPic);
+            lutemonPic = getPic(lutemonA, "flipped");
+            imgLutemonA.setImageResource(lutemonPic);
+
+            //Attack
+            battleText += lutemonA.battleDefence(lutemonB);
+
+            //Update stats
+            updateStatsA();
+            updateStatsB();
+
+            //Next in turn A
+            nextInTurn = "A";
+
+            txtBattleText.setText(battleText);
+
+            //IF LUTEMON A DEAD!!! DO NOT CONTINUE FIGHT!!
+            if (lutemonA.getHealth() <= 0) {
+                btnActivity.setText("END OF BATTLE");
+                //endOfBattle(view);
+                return;
+            }
+
+            //Next in turn A
+            btnActivity.setText("Next turn");
+
+        }
+        else {
+
+
+            endOfBattle(view);
+            // A WON B LOST
+
+            /*lutemonPic = getPic(lutemonA, "winner");
+            imgLutemonB.setImageResource(lutemonPic);
+            lutemonPic = getPic(lutemonB, "dead");
+            imgLutemonB.setImageResource(lutemonPic);
+
+            System.out.println("Lutemon B is dead ");
+            battleText += "Lutemon " + lutemonB.getName() + " is dead \n";
+            txtBattleText.setText(battleText);
+
+            System.out.println("Lutemon A WON! ");
+            battleText += "Lutemon " + lutemonA.getName() + " WON! \n";
+            txtBattleText.setText(battleText);
+
+            //Update stats
+            //lutemonB.setHealth(0);
+
+            //Update visible stats before loses, victories and xp
+            updateStatsA();
+            updateStatsB();
+
+            lutemonB.setLoses(lutemonB.getLoses() + 1);
+            lutemonA.setVictories(lutemonA.getVictories() + 1);
+            lutemonA.setExperience(lutemonA.getExperience() + 1);
+
+            BattleStorage.getInstance().setWinner(lutemonA);
+            BattleStorage.getInstance().setLoser(lutemonB);
+            BattleStorage.getInstance().setLutemonA(null);
+            BattleStorage.getInstance().setLutemonB(null);
+
+
+            //fighting = false;
+
+            btnActivity.setText("Next");
+            //break;*/
+        }
+
+    }
+
+    private void endOfBattle(View view) {
+
+        String battleText = "";
+
+        //IF A DIED update stats and leave battle
+        if (lutemonA.getHealth() <= 0) {
+
+            System.out.println("Lutemon A is dead ");
+
+            lutemonPic = getPic(lutemonA, "dead");
+            imgLutemonA.setImageResource(lutemonPic);
+            lutemonPic = getPic(lutemonB, "winner");
+            imgLutemonB.setImageResource(lutemonPic);
+
+            battleText += "Lutemon " + lutemonA.getName() + " is dead \n";
+            txtBattleText.setText(battleText);
+
+            System.out.println("Lutemon B WON!");
+            battleText += "Lutemon " + lutemonB.getName() + " WON! \n";
+            txtBattleText.setText(battleText);
+
+            //Update stats
+
+
+            //Update visible stats before loses, victories and xp
+            updateStatsA();
+            updateStatsB();
+
+            lutemonA.setLoses(lutemonA.getLoses() + 1);
+            lutemonB.setVictories(lutemonB.getVictories() + 1);
+            lutemonB.setExperience(lutemonB.getExperience() + 1);
+
+            BattleStorage.getInstance().setWinner(lutemonB);
+            BattleStorage.getInstance().setLoser(lutemonA);
+            BattleStorage.getInstance().setLutemonA(null);
+            BattleStorage.getInstance().setLutemonB(null);
+
+            btnActivity.setText("Next");
+            //fighting = false;
+            //break;
+        }
+        else if (lutemonB.getHealth() <= 0){
+
+            // A WON B LOST
+
+            lutemonPic = getPic(lutemonA, "winner");
+            imgLutemonA.setImageResource(lutemonPic);
+            lutemonPic = getPic(lutemonB, "dead");
+            imgLutemonB.setImageResource(lutemonPic);
+
+            System.out.println("Lutemon B is dead ");
+            battleText += "Lutemon " + lutemonB.getName() + " is dead \n";
+            txtBattleText.setText(battleText);
+
+            System.out.println("Lutemon A WON! ");
+            battleText += "Lutemon " + lutemonA.getName() + " WON! \n";
+            txtBattleText.setText(battleText);
+
+
+            //Update visible stats before loses, victories and xp
+            updateStatsA();
+            updateStatsB();
+
+            lutemonB.setLoses(lutemonB.getLoses() + 1);
+            lutemonA.setVictories(lutemonA.getVictories() + 1);
+            lutemonA.setExperience(lutemonA.getExperience() + 1);
+
+            BattleStorage.getInstance().setWinner(lutemonA);
+            BattleStorage.getInstance().setLoser(lutemonB);
+            BattleStorage.getInstance().setLutemonA(null);
+            BattleStorage.getInstance().setLutemonB(null);
+
+            //fighting = false;
+
+            btnActivity.setText("Next");
+
+        }
+
+
+    }
+
 
     private void returnToBattle(View view) {
 
