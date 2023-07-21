@@ -23,44 +23,42 @@
     <ImageView
         android:id="@+id/imgWinner"
         android:layout_width="222dp"
-        android:layout_height="274dp"
+        android:layout_height="222dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtVictoryHeader"
-        app:layout_constraintVertical_bias="0.236"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/orangesmallclear" />
-
-    <Button
-        android:id="@+id/btnToBattleField"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="108dp"
-        android:text="To Battle Field"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtWinnerStats" />
 
     <Button
         android:id="@+id/btnToHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="10dp"
         android:text="Return Home to rest"
+        app:layout_constraintBottom_toTopOf="@+id/btnToBattleField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnToBattleField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="10dp"
+        android:text="To Battle Field"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnToBattleField" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/txtWinnerStats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="sans-serif"
         android:text="Winner"
         android:textSize="20sp"

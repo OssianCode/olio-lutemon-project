@@ -34,14 +34,24 @@ public class NewLutemonActivity extends AppCompatActivity {
         EditText editName = findViewById(R.id.editName);
         RadioGroup rgColor = findViewById(R.id.radioGroupColor) ;
         RadioButton rbNewLutemonColor = findViewById(rgColor.getCheckedRadioButtonId());
-        String selectedColor = rbNewLutemonColor.getText().toString();
-        int id = (int) (100*Math.random() + Math.random()*5 + Math.random()); //TODO: REMOVE ID TOTALLY? is this used?
+
+        String selectedColor = "";
+        //Check if a radioButton is selected
+        if (rbNewLutemonColor != null) {
+            selectedColor = rbNewLutemonColor.getText().toString();
+        }
+
+        int id = (int) (100000*Math.random() + Math.random()*5 + Math.random()*10);
         String name = editName.getText().toString();
 
         //System.out.println("New Lutemon name " + name);
 
         //Create Lutemon
         Lutemon lutemon = null;
+
+        if (name.equals("")) {
+            name = "Lutemon" + (int) (Math.random()*10);
+        }
 
         switch (selectedColor) {
             case "White":

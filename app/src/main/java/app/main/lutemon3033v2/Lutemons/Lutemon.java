@@ -49,6 +49,10 @@ public class Lutemon implements Serializable {
 
             health = health - damage;
 
+            if (health < 0) {
+                health = 0;
+            }
+
             System.out.println("Total damage to Lutemon " + name + " is " + damage + " (HP: " + health + "/" + maxHealth + ")" );
 
             defenceTxt += "Total damage to Lutemon " + name + " is " + damage + " (HP: " + health + "/" + maxHealth + ")" + "\n";
@@ -73,7 +77,6 @@ public class Lutemon implements Serializable {
 
         if ((int) (Math.random() * 10) > 4 ) {
 
-
             attackPower = (attack + experience)  + (int) (Math.random() + Math.random() + Math.random() + Math.random());
 
             System.out.println("Lutemon " + name + " attacks with power V1 " + attackPower);
@@ -84,11 +87,7 @@ public class Lutemon implements Serializable {
             attackPower = (attack + experience)  - (int) (Math.random() + Math.random() );
             System.out.println("Lutemon " + name + " attacks with power V2 " + attackPower);
 
-
-
         }
-
-        //System.out.println("Lutemon " + name + " attacks with power " + attackPower);
 
         return attackPower;
     }

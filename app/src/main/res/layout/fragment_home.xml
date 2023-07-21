@@ -32,46 +32,38 @@
             android:id="@+id/radioGroupHome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/txtHomeHeader">
 
             <RadioButton
                 android:id="@+id/radioButton"
+                style="@style/RadioButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pink Lutemon" />
 
             <RadioButton
                 android:id="@+id/radioButton3"
+                style="@style/RadioButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Green Lutemon" />
 
             <RadioButton
                 android:id="@+id/radioButton2"
+                style="@style/RadioButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Yellow Lutemon" />
         </RadioGroup>
 
         <Button
-            android:id="@+id/btnNewLutemon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|bottom"
-            android:text="Create Lutemon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.482"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnHomeMoveToBattle" />
-
-        <Button
             android:id="@+id/btnHomeMoveToTraining"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="50dp"
             android:text="Move to Training Arena"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,6 +77,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnHomeMoveToTraining" />
+
+        <Button
+            android:id="@+id/btnNewLutemon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:text="Create Lutemon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.482"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnHomeMoveToBattle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

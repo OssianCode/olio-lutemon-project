@@ -64,4 +64,43 @@ public abstract class Storage {
     public ArrayList<Lutemon> getLutemons() {
         return lutemons;
     }
+
+    public boolean deleteLutemon(int id, Context context) {
+
+        boolean ok = false;
+
+
+        int i = 0;
+        for (Lutemon lutemon: lutemons) {
+            if (lutemon.getId() == id) {
+                System.out.println("DELETE lutemon found in graveyard name: " + lutemon.getName());
+                ok = true;
+                break;
+            }
+            i++;
+        }
+
+        if (ok) {
+            lutemons.remove(i);
+        }
+
+        //FOR TEST --->
+        i = 0;
+
+
+        for (Lutemon lutemon: lutemons) {
+            if (lutemon.getId() == id) {
+                System.out.println("LUTEMON STILL FOUND IN Grveyard");
+                ok = false;
+                break;
+            }
+            i++;
+        }//<--- FOR TEST
+
+        //If delete ok, then ok = true
+
+        saveLutemons(context);
+
+        return ok;
+    }
 }

@@ -14,6 +14,7 @@ import app.main.lutemon3033v2.Areas.BattleField;
 import app.main.lutemon3033v2.Areas.BattleStorage;
 import app.main.lutemon3033v2.Areas.Graveyard;
 import app.main.lutemon3033v2.Areas.Home;
+import app.main.lutemon3033v2.Lutemons.Black;
 import app.main.lutemon3033v2.Lutemons.Lutemon;
 import app.main.lutemon3033v2.R;
 import app.main.lutemon3033v2.TabMainActivity;
@@ -48,7 +49,16 @@ public class VictoryActivity extends AppCompatActivity implements View.OnClickLi
 
         if (winner != null) {
 
-            imgWinner.setImageResource(winner.getImage());
+
+            if (winner instanceof Black) {
+                imgWinner.setImageResource(R.drawable.blacklargeclear);
+            }
+            else {
+
+                imgWinner.setImageResource(winner.getImage());
+            }
+
+
 
             String winnerStats = winner.getName() + "\n";
             winnerStats += "HP: " + winner.getHealth() + " / " + winner.getMaxHealth() + "\n" ;
@@ -76,6 +86,7 @@ public class VictoryActivity extends AppCompatActivity implements View.OnClickLi
             BattleField.getInstance().addLutemon(winner, this);
 
         }
+        //TODO: btnToBattleField gets on top of txt, resize something
 
         //After any button click activate next screen
 

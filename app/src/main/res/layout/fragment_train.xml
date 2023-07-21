@@ -33,25 +33,28 @@
             android:id="@+id/radioGroupTraining"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/txtTrainingHeader">
 
             <RadioButton
                 android:id="@+id/radioButton"
+                style="@style/RadioButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pink Lutemon XP 2" />
 
             <RadioButton
                 android:id="@+id/radioButton3"
+                style="@style/RadioButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Green Lutemon XP 5" />
 
             <RadioButton
                 android:id="@+id/radioButton2"
+                style="@style/RadioButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Orange Lutemon XP 0" />
@@ -61,7 +64,7 @@
             android:id="@+id/btnTrainReturnResting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="50dp"
             android:text="Return Home"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

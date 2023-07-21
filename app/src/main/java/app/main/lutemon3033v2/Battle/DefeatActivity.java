@@ -14,6 +14,7 @@ import app.main.lutemon3033v2.Areas.BattleField;
 import app.main.lutemon3033v2.Areas.BattleStorage;
 import app.main.lutemon3033v2.Areas.Graveyard;
 import app.main.lutemon3033v2.Areas.Home;
+import app.main.lutemon3033v2.Lutemons.Black;
 import app.main.lutemon3033v2.Lutemons.Lutemon;
 import app.main.lutemon3033v2.R;
 import app.main.lutemon3033v2.TabMainActivity;
@@ -46,7 +47,14 @@ public class DefeatActivity extends AppCompatActivity implements View.OnClickLis
 
         if (loser != null) {
 
-            imgLoser.setImageResource(loser.getImage());
+            if (loser instanceof Black) {
+                imgLoser.setImageResource(R.drawable.blacklargeclear);
+            }
+            else {
+
+                imgLoser.setImageResource(loser.getImage());
+            }
+
 
 
             String loserStats = loser.getName() + "\n";

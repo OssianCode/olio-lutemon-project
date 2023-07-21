@@ -30,9 +30,9 @@ public class Graveyard extends Storage {
 
     public void saveLutemons(@NonNull Context context){
 
-        //System.out.println("Graveyard - save lutemons ");
+        System.out.println("Graveyard - save lutemons ");
         try {
-            //System.out.println("save lutemons try");
+            System.out.println("save lutemons try");
             ObjectOutputStream lutemonWriter = new ObjectOutputStream(context.openFileOutput("lutemons-grave.data", Context.MODE_PRIVATE));
             lutemonWriter.writeObject(lutemons);
             lutemonWriter.close();
@@ -51,9 +51,9 @@ public class Graveyard extends Storage {
 
 
             //TODO: Delete graveyard file action
-        //System.out.println("load lutemons");
+        System.out.println("load lutemons");
         try {
-            //System.out.println("load lutemons try");
+            System.out.println("load lutemons try");
             ObjectInputStream lutemonReader = new ObjectInputStream(context.openFileInput("lutemons-grave.data"));
             lutemons = (ArrayList<Lutemon>) lutemonReader.readObject();
             lutemonReader.close();

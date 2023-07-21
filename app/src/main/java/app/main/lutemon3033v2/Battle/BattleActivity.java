@@ -28,12 +28,11 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     private Lutemon lutemonA = null;
     private Lutemon lutemonB = null;
 
-    private ImageView imgLutemonA;
-    private ImageView imgLutemonB;
-    private TextView txtBattleText;
-
+    private ImageView imgLutemonA, imgLutemonB;
+    private TextView txtBattleText, txtLutAStats, txtLutBStats;
     private Button btnActivity;
 
+    private int round = 0;
 
    // private int idA = -1;
    // private int idB = -1;
@@ -46,49 +45,34 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_battle);
 
-
         context = BattleActivity.this;
-
 
         btnActivity = (Button) findViewById(R.id.btnFight);
         btnActivity.setOnClickListener(this);
-
 
         imgLutemonA = findViewById(R.id.imgLutemonA);
         imgLutemonB = findViewById(R.id.imgLutemonB);
         txtBattleText = findViewById(R.id.txtBattleText);
 
-
-        // Find selected lutemons
-
-        /*Bundle selectedLutemons = getIntent().getExtras();
-        if (selectedLutemons != null) {
-            idA = selectedLutemons.getInt("idA");
-            idB = selectedLutemons.getInt("idB");
-
-            System.out.println("BATTLE lutemon idA: " + idA + " idB: " + idB);
-
-        }*/
-
-        //NOT NEEDED
-        //if (idA >= 0 && idB >= 0 && idA != idB){
-
-            //System.out.println("BATTLE find lutemons next");
-
-            //lutemonA = BattleField.getInstance().getLutemon(idA, this);
-            //lutemonB = BattleField.getInstance().getLutemon(idB, this);
-
         lutemonA = BattleStorage.getInstance().getLutemonA();
         lutemonB = BattleStorage.getInstance().getLutemonB();
 
-        TextView txtLutAStats = findViewById(R.id.txtLutAStats);
-        TextView txtLutBStats = findViewById(R.id.txtLutBStats);
-
+        txtLutAStats = findViewById(R.id.txtLutAStats);
+        txtLutBStats = findViewById(R.id.txtLutBStats);
 
         if (lutemonA != null) {
 
-            imgLutemonA.setImageResource(lutemonA.getImage());
+            if (lutemonA instanceof Black) {
+                imgLutemonA.setImageResource(R.drawable.blacklargeclearflipped);
+            }
+            else {
 
+                imgLutemonA.setImageResource(lutemonA.getImage());
+            }
+
+            updateStatsA();
+
+            /*
             String lutAStats = lutemonA.getName() + "\n";
             lutAStats += "HP: " + lutemonA.getHealth() + " / " + lutemonA.getMaxHealth() + "\n" ;
             lutAStats += "Attack: " + lutemonA.getAttack() + "\n" ;
@@ -98,12 +82,16 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
             lutAStats += "Defeats: " + lutemonA.getLoses() ;
 
             txtLutAStats.setText(lutAStats);
+
+             */
         }
         if (lutemonB != null) {
 
             imgLutemonB.setImageResource(lutemonB.getImage());
 
-            String lutBStats = lutemonB.getName() + "\n";
+            updateStatsB();
+
+            /*String lutBStats = lutemonB.getName() + "\n";
             lutBStats += "HP: " + lutemonB.getHealth() + " / " + lutemonB.getMaxHealth() + "\n";
             lutBStats += "Attack: " + lutemonB.getAttack() + "\n";
             lutBStats += "XP: " + lutemonB.getExperience() + "\n";
@@ -111,7 +99,7 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
             lutBStats += "Victories: " + lutemonB.getVictories() + "\n";
             lutBStats += "Defeats: " + lutemonB.getLoses()  ;
 
-            txtLutBStats.setText(lutBStats);
+            txtLutBStats.setText(lutBStats);*/
         }
 
 
@@ -119,13 +107,38 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    private void updateStatsB() {
 
-    //}
+        String lutBStats = lutemonB.getName() + "\n";
+        lutBStats += "HP: " + lutemonB.getHealth() + " / " + lutemonB.getMaxHealth() + "\n";
+        lutBStats += "Attack: " + lutemonB.getAttack() + "\n";
+        lutBStats += "XP: " + lutemonB.getExperience() + "\n";
+        lutBStats += "Defence: " + lutemonB.getDefence() + "\n" ;
+        lutBStats += "Victories: " + lutemonB.getVictories() + "\n";
+        lutBStats += "Defeats: " + lutemonB.getLoses()  ;
+
+        txtLutBStats.setText(lutBStats);
+    }
+
+    private void updateStatsA() {
+
+        String lutAStats = lutemonA.getName() + "\n";
+        lutAStats += "HP: " + lutemonA.getHealth() + " / " + lutemonA.getMaxHealth() + "\n" ;
+        lutAStats += "Attack: " + lutemonA.getAttack() + "\n" ;
+        lutAStats += "XP: " + lutemonA.getExperience() + "\n" ;
+        lutAStats += "Defence: " + lutemonA.getDefence() + "\n" ;
+        lutAStats += "Victories: " + lutemonA.getVictories() + "\n" ;
+        lutAStats += "Defeats: " + lutemonA.getLoses() ;
+
+        txtLutAStats.setText(lutAStats);
+
+    }
+
 
     @Override
     public void onClick(View view) {
 
-        if (btnActivity.getText().toString().equals("Go!")) {
+        if (btnActivity.getText().toString().equals("Go!") || btnActivity.getText().toString().equals("Next round")) {
 
             lutemonBattle(view);
         }
@@ -141,7 +154,6 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 
 
 
-
     public void lutemonBattle(View view) {
 
         if (lutemonA == null || lutemonB == null) {
@@ -150,25 +162,20 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
 
-
         System.out.println("FIGHT!" );
 
         //TODO: Animate pics?
-        //TODO: Get selected lutemons from battlefield
 
         String battleText = "";
-        int i = 0;
+
         boolean fighting = true;
         while (fighting) {
 
-            i++;
-            battleText += "ROUND " + i + "! ";
+            round++;
+            battleText = "ROUND " + round + "! " + " \n" + " \n"; //TEST: remove plus, just is // Make one round at a time
 
             if (lutemonA.getHealth() > 0) {
                 System.out.println("FIGHT Lutemon A attacks B ");
-
-                //battleText += lutemonA.getName() + " attacks " + lutemonB.getName()+ " \n";
-
 
 
                 battleText += lutemonB.battleDefence(lutemonA);
@@ -177,14 +184,13 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 
             }
             else {
+                //This maybe never happens?
+                // Leave it here for now to be sure no dead lutemons fight
                 // B WON A LOST
                 System.out.println("Lutemon A is dead ");
 
                 battleText += "Lutemon " + lutemonA.getName() + " is dead \n";
                 txtBattleText.setText(battleText);
-
-                //moved this to Defeat action and victory action
-                //Graveyard.getInstance().addLutemon(lutemonA, this);
 
                 System.out.println("Lutemon B WON!");
                 battleText += "Lutemon " + lutemonB.getName() + " WON! \n";
@@ -192,15 +198,23 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 
 
                 //Update stats
-                lutemonA.setHealth(0);
+                //lutemonA.setHealth(0);
+
+                //Update visible stats before loses, victories and xp
+                updateStatsA();
+                updateStatsB();
+
                 lutemonA.setLoses(lutemonA.getLoses() + 1);
                 lutemonB.setVictories(lutemonB.getVictories() + 1);
                 lutemonB.setExperience(lutemonB.getExperience() + 1);
+
+
                 BattleStorage.getInstance().setWinner(lutemonB);
                 BattleStorage.getInstance().setLoser(lutemonA);
                 BattleStorage.getInstance().setLutemonA(null);
                 BattleStorage.getInstance().setLutemonB(null);
 
+                btnActivity.setText("Next");
                 fighting = false;
                 break;
             }
@@ -214,6 +228,46 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                 battleText += lutemonA.battleDefence(lutemonB);
 
                 txtBattleText.setText(battleText);
+
+                //IF A DIED update stats and leave battle
+                if (lutemonA.getHealth() <= 0) {
+
+                    System.out.println("Lutemon A is dead ");
+
+                    battleText += "Lutemon " + lutemonA.getName() + " is dead \n";
+                    txtBattleText.setText(battleText);
+
+                    System.out.println("Lutemon B WON!");
+                    battleText += "Lutemon " + lutemonB.getName() + " WON! \n";
+                    txtBattleText.setText(battleText);
+
+                    //Update stats
+
+
+                    //Update visible stats before loses, victories and xp
+                    updateStatsA();
+                    updateStatsB();
+
+                    lutemonA.setLoses(lutemonA.getLoses() + 1);
+                    lutemonB.setVictories(lutemonB.getVictories() + 1);
+                    lutemonB.setExperience(lutemonB.getExperience() + 1);
+
+                    BattleStorage.getInstance().setWinner(lutemonB);
+                    BattleStorage.getInstance().setLoser(lutemonA);
+                    BattleStorage.getInstance().setLutemonA(null);
+                    BattleStorage.getInstance().setLutemonB(null);
+
+                    btnActivity.setText("Next");
+                    fighting = false;
+                    break;
+                }
+
+                updateStatsA();
+                updateStatsB();
+
+                btnActivity.setText("Next round");
+                break; //TEST, go to next round
+
 
             }
             else {
@@ -229,10 +283,16 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                 txtBattleText.setText(battleText);
 
                 //Update stats
-                lutemonB.setHealth(0);
+                //lutemonB.setHealth(0);
+
+                //Update visible stats before loses, victories and xp
+                updateStatsA();
+                updateStatsB();
+
                 lutemonB.setLoses(lutemonB.getLoses() + 1);
                 lutemonA.setVictories(lutemonA.getVictories() + 1);
                 lutemonA.setExperience(lutemonA.getExperience() + 1);
+
                 BattleStorage.getInstance().setWinner(lutemonA);
                 BattleStorage.getInstance().setLoser(lutemonB);
                 BattleStorage.getInstance().setLutemonA(null);
@@ -240,12 +300,15 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 
 
                 fighting = false;
+
+                btnActivity.setText("Next");
                 break;
             }
 
         }
 
-        btnActivity.setText("Next");
+
+        //btnActivity.setText("Next");
 
     }
 

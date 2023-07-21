@@ -48,30 +48,35 @@
             android:id="@+id/radioColor1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/RadioButton"
             android:text="White" />
 
         <RadioButton
             android:id="@+id/radioColor2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/RadioButton"
             android:text="Green" />
 
         <RadioButton
             android:id="@+id/radioColor3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/RadioButton"
             android:text="Pink" />
 
         <RadioButton
             android:id="@+id/radioColor4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/RadioButton"
             android:text="Orange" />
 
         <RadioButton
             android:id="@+id/radioColor5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/RadioButton"
             android:text="Black" />
     </RadioGroup>
 
