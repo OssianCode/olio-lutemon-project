@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import app.main.lutemon3033v2.Areas.BattleField;
 import app.main.lutemon3033v2.Areas.Home;
 import app.main.lutemon3033v2.Areas.TrainingArena;
+import app.main.lutemon3033v2.InfoActivity;
 import app.main.lutemon3033v2.Lutemons.Lutemon;
 import app.main.lutemon3033v2.NewLutemonActivity;
 import app.main.lutemon3033v2.R;
@@ -33,6 +35,8 @@ public class FragmentHome extends Fragment {
         if (getArguments() != null) {
 
         }
+
+
     }
 
     @Override
@@ -41,6 +45,8 @@ public class FragmentHome extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        //TODO: make nicer buttons to HOME, TRAINING, BATTLE
 
         makeRadioButtons(view);
 
@@ -86,6 +92,7 @@ public class FragmentHome extends Fragment {
         Button btnNewLut = (Button) view.findViewById(R.id.btnNewLutemon);
         Button btnHomeToTrain = (Button) view.findViewById(R.id.btnHomeMoveToTraining);
         Button btnHomeToBattle = (Button) view.findViewById(R.id.btnHomeMoveToBattle);
+        ImageView imgInfo = (ImageView) view.findViewById(R.id.imgInfo);
 
 
         View.OnClickListener listener =  new View.OnClickListener()
@@ -111,7 +118,13 @@ public class FragmentHome extends Fragment {
                     lutemonToBattleField(view);
 
                 }
+                else if (view.getId() == R.id.imgInfo) {
+                    System.out.println("Home INSTRUCTIONS clicked");
 
+                    Intent intent = new Intent(view.getContext(), InfoActivity.class);
+                    startActivity(intent);
+
+                }
                 /*System.out.println("REfresh SOON view.getId() " + view.getId());
                 refresh();*/
 
@@ -122,7 +135,7 @@ public class FragmentHome extends Fragment {
         btnNewLut.setOnClickListener(listener);
         btnHomeToTrain.setOnClickListener(listener);
         btnHomeToBattle.setOnClickListener(listener);
-
+        imgInfo.setOnClickListener(listener);
 
     }
 
@@ -130,13 +143,9 @@ public class FragmentHome extends Fragment {
     private void lutemonToTrainingArena(View view) {
         Lutemon lutemon = findLutemon(view);
 
-        //TODO: fix weird bug, sometimes lutemons double(?) when hitting move to training? maybe battle too? is it only home?
-
         if (lutemon != null) {
 
-
             //System.out.println("HOME lutemon name " + lutemon.getName() + " list lutemons 1: ");
-
 
             TrainingArena.getInstance().listLutemons();
 
@@ -146,14 +155,10 @@ public class FragmentHome extends Fragment {
 
             TrainingArena.getInstance().listLutemons();
         }
-        //System.out.println( "HOME going to  makeRadioButtons(view);" );
-
-        //Crashes  java.lang.NullPointerException: Attempt to invoke virtual method 'void android.widget.RadioGroup.removeAllViews()
-        //makeRadioButtons(view);
 
         //System.out.println("REfresh SOON  1");
         refresh(view);
-        //makeRadioButtons(view);
+
     }
 
 
@@ -165,15 +170,10 @@ public class FragmentHome extends Fragment {
         if (lutemon != null) {
             BattleField.getInstance().addLutemon(lutemon, view.getContext());
         }
-        //System.out.println( "HOME going to  makeRadioButtons(view);" );
-
-        //Crashes  java.lang.NullPointerException: Attempt to invoke virtual method 'void android.widget.RadioGroup.removeAllViews()
-
-        //makeRadioButtons(view);
 
         //System.out.println("REfresh SOON 2 ");
         refresh(view);
-        //makeRadioButtons(view);
+
     }
     private Lutemon findLutemon(View view) {
 

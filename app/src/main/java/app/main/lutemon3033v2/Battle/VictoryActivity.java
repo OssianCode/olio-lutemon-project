@@ -86,7 +86,7 @@ public class VictoryActivity extends AppCompatActivity implements View.OnClickLi
             BattleField.getInstance().addLutemon(winner, this);
 
         }
-        //TODO: btnToBattleField gets on top of txt, resize something
+
 
         //After any button click activate next screen
 

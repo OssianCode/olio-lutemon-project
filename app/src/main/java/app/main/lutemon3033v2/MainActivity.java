@@ -6,29 +6,70 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
-import java.io.File;
+import java.util.ArrayList;
 
+import app.main.lutemon3033v2.Areas.BattleField;
+import app.main.lutemon3033v2.Areas.Graveyard;
 import app.main.lutemon3033v2.Areas.Home;
-import app.main.lutemon3033v2.Lutemons.Green;
+import app.main.lutemon3033v2.Areas.TrainingArena;
 import app.main.lutemon3033v2.Lutemons.Lutemon;
-import app.main.lutemon3033v2.Lutemons.Orange;
-import app.main.lutemon3033v2.Lutemons.Pink;
-
 public class MainActivity extends AppCompatActivity {
 
     Context context = MainActivity.this;
+    private String frontStats = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TextView txtFrontStats = findViewById(R.id.txtFrontInfo);
 
-        /*Home home = Home.getInstance();
+        //GET TXT DATA
 
-        home.loadLutemons(context);*/
+        //HOME
+        Home home = Home.getInstance();
+        Home.getInstance().loadLutemons(this);
 
+        ArrayList<Lutemon> lutemonsAlive = home.getLutemons();
+
+        //TRAINING ARENA
+        TrainingArena trainingArena = TrainingArena.getInstance();
+        trainingArena.loadLutemons(this);
+
+        lutemonsAlive.addAll(trainingArena.getLutemons());
+
+        //BATTLE FIELD
+        BattleField battleField = BattleField.getInstance();
+        battleField.loadLutemons(this);
+
+        lutemonsAlive.addAll(battleField.getLutemons());
+
+        //GRAVEYARD
+        Graveyard graveyard = Graveyard.getInstance();
+        graveyard.loadLutemons(this);
+        ArrayList<Lutemon> lutemonsBuried = graveyard.getLutemons();
+
+        int wins = 0;
+        int defeats = 0;
+        int xp = 0;
+        for (Lutemon lutemon: lutemonsAlive) {
+            wins += lutemon.getVictories();
+            defeats += lutemon.getLoses();
+            xp += lutemon.getExperience();
+        }
+
+        //SET TEXT
+        frontStats = "Lutemons " + lutemonsAlive.size()  +"\n";
+        frontStats += "Victories " + wins  +"\n";
+        frontStats += "Defeats " + defeats  +"\n";
+        frontStats += "XP " + xp  +"\n";
+        frontStats += "Buried " + lutemonsBuried.size() ;
+        
+        txtFrontStats.setText(frontStats);
+        
 
         //TODO: FOR TEST remove files
 
@@ -54,8 +95,6 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println("training file deleted " + deleted);
         *///<-- FOR TEST
-
-        //TODO: ADD stats to start page!
 
 
     }

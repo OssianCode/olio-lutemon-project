@@ -50,7 +50,6 @@ public class LutemonListAdapter extends RecyclerView.Adapter<LutemonViewHolder> 
                 holder.imgDelete.setTooltipText("Delete lutemon");
             }
 
-
             holder.imgDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -66,7 +65,6 @@ public class LutemonListAdapter extends RecyclerView.Adapter<LutemonViewHolder> 
                     notifyItemRemoved(pos);
 
                     boolean galleryLutDel = false;
-
 
                     int a = 0;
                     for (Lutemon lutemon: lutemons) {
@@ -84,19 +82,13 @@ public class LutemonListAdapter extends RecyclerView.Adapter<LutemonViewHolder> 
 
                     System.out.println("GALLERY DELETE lutemon deleted: " + galleryLutDel);
 
-
-
                 }
-
             });
-
         }
         else {
             holder.imgDelete.setImageResource(0);
         }
 
-
-        //TODO: Grave stone activity - delete lutemon in gallery
 
     }
 

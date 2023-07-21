@@ -30,7 +30,7 @@
         app:layout_constraintHorizontal_bias="0.061"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtBattleHeader2"
-        app:srcCompat="@drawable/greensmallclear" />
+        app:srcCompat="@drawable/greenlargeclearflipped" />
 
     <ImageView
         android:id="@+id/imgLutemonB"
@@ -42,7 +42,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/imgLutemonA"
         app:layout_constraintTop_toBottomOf="@+id/txtBattleHeader2"
-        app:srcCompat="@drawable/orangesmallclear" />
+        app:srcCompat="@drawable/orangelargeclear" />
 
     <Button
         android:id="@+id/btnFight"

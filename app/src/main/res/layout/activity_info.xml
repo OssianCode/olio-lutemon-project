@@ -4,52 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/lightturquoise"
-    tools:context=".MainActivity">
+    tools:context=".InfoActivity">
 
     <TextView
-        android:id="@+id/txtMainHeader"
+        android:id="@+id/txtInfoHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:fontFamily="sans-serif-black"
-        android:text="Lutemon 3033"
-        android:textColor="@color/mediumturquoise"
+        android:layout_gravity="top"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Instructions"
+        android:textColor="@color/mediumblue"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imgFrontLutemons"
-        android:layout_width="fill_parent"
-        android:layout_height="300dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtMainHeader"
-        app:srcCompat="@drawable/frontlutemonslarge" />
-
     <TextView
-        android:id="@+id/txtFrontInfo"
-        android:layout_width="wrap_content"
+        android:id="@+id/txtInstructions"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Lutemoneja 5"
-        android:textSize="18sp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:text="How to play"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgFrontLutemons" />
+        app:layout_constraintTop_toBottomOf="@+id/txtInfoHeader" />
 
     <Button
-        android:id="@+id/btnPlay"
+        android:id="@+id/btnBackToHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
         android:layout_marginBottom="20dp"
-        android:onClick="playGame"
-        android:text="Play"
+        android:onClick="backHome"
+        android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

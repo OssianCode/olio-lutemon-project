@@ -16,6 +16,7 @@ import app.main.lutemon3033v2.Areas.Graveyard;
 import app.main.lutemon3033v2.Lutemons.Black;
 import app.main.lutemon3033v2.Lutemons.Green;
 import app.main.lutemon3033v2.Lutemons.Lutemon;
+import app.main.lutemon3033v2.Lutemons.Orange;
 import app.main.lutemon3033v2.Lutemons.Pink;
 import app.main.lutemon3033v2.Lutemons.White;
 import app.main.lutemon3033v2.MainActivity;
@@ -33,8 +34,9 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
     private Button btnActivity;
 
     private int round = 0;
+    private int lutemonPic = 0;
 
-   // private int idA = -1;
+    // private int idA = -1;
    // private int idB = -1;
 
 
@@ -62,13 +64,29 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
 
         if (lutemonA != null) {
 
-            if (lutemonA instanceof Black) {
+            /*if (lutemonA instanceof Black) {
                 imgLutemonA.setImageResource(R.drawable.blacklargeclearflipped);
+            }
+            else if (lutemonA instanceof Green) {
+                imgLutemonA.setImageResource(R.drawable.greenlargeclearflipped);
+            }
+            else if (lutemonA instanceof Orange) {
+                imgLutemonA.setImageResource(R.drawable.orangelargeclearflipped);
+            }
+            else if (lutemonA instanceof Pink) {
+                imgLutemonA.setImageResource(R.drawable.pinklargeclearflipped);
+            }
+            else if (lutemonA instanceof White) {
+                imgLutemonA.setImageResource(R.drawable.whitelargeclearflipped);
             }
             else {
 
                 imgLutemonA.setImageResource(lutemonA.getImage());
-            }
+            }*/
+
+            lutemonPic = getPic(lutemonA, "flipped");
+
+            imgLutemonA.setImageResource(lutemonPic);
 
             updateStatsA();
 
@@ -163,8 +181,7 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         }
 
         System.out.println("FIGHT!" );
-
-        //TODO: Animate pics?
+        //TODO: buttons "attack ->" "<-- attack" and show picture
 
         String battleText = "";
 
@@ -177,6 +194,12 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
             if (lutemonA.getHealth() > 0) {
                 System.out.println("FIGHT Lutemon A attacks B ");
 
+                //TODO: TEST
+                lutemonPic = getPic(lutemonA, "fightFlipped");
+                imgLutemonA.setImageResource(lutemonPic);
+
+                lutemonPic = getPic(lutemonB, "");
+                imgLutemonB.setImageResource(lutemonPic);
 
                 battleText += lutemonB.battleDefence(lutemonA);
 
@@ -189,8 +212,17 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                 // B WON A LOST
                 System.out.println("Lutemon A is dead ");
 
+                //TODO: TEST
+                lutemonPic = getPic(lutemonA, "dead");
+                imgLutemonA.setImageResource(lutemonPic);
+
                 battleText += "Lutemon " + lutemonA.getName() + " is dead \n";
                 txtBattleText.setText(battleText);
+
+
+                //TODO: TEST
+                lutemonPic = getPic(lutemonB, "winner");
+                imgLutemonB.setImageResource(lutemonPic);
 
                 System.out.println("Lutemon B WON!");
                 battleText += "Lutemon " + lutemonB.getName() + " WON! \n";
@@ -224,6 +256,12 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                 System.out.println("Lutemon B attacks A ");
                 //battleText += lutemonB.getName() + " attacks " + lutemonA.getName()+ " \n";
 
+                //TODO: TEST
+                lutemonPic = getPic(lutemonB, "fight");
+                imgLutemonB.setImageResource(lutemonPic);
+                lutemonPic = getPic(lutemonA, "flipped");
+                imgLutemonA.setImageResource(lutemonPic);
+
 
                 battleText += lutemonA.battleDefence(lutemonB);
 
@@ -233,6 +271,13 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
                 if (lutemonA.getHealth() <= 0) {
 
                     System.out.println("Lutemon A is dead ");
+
+
+                    //TODO: TEST
+                    lutemonPic = getPic(lutemonA, "dead");
+                    imgLutemonB.setImageResource(lutemonPic);
+                    lutemonPic = getPic(lutemonB, "winner");
+                    imgLutemonB.setImageResource(lutemonPic);
 
                     battleText += "Lutemon " + lutemonA.getName() + " is dead \n";
                     txtBattleText.setText(battleText);
@@ -273,6 +318,13 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
             else {
 
                 // A WON B LOST
+
+                //TODO: TEST
+                lutemonPic = getPic(lutemonA, "winner");
+                imgLutemonB.setImageResource(lutemonPic);
+                lutemonPic = getPic(lutemonB, "dead");
+                imgLutemonB.setImageResource(lutemonPic);
+
 
                 System.out.println("Lutemon B is dead ");
                 battleText += "Lutemon " + lutemonB.getName() + " is dead \n";
@@ -320,6 +372,116 @@ public class BattleActivity extends AppCompatActivity implements View.OnClickLis
         startActivity(intent);
 
     }
+
+    private int getPic(Lutemon lutemon, String mode) {
+
+        int pic = 0;
+
+        switch (mode) {
+
+            case "fight":
+                if (lutemon instanceof Black) {
+                    pic = R.drawable.blacklargeclearfight;
+                } else if (lutemon instanceof Green) {
+                    pic = R.drawable.greenlargeclearfight;
+                } else if (lutemon instanceof Orange) {
+                    pic = R.drawable.orangelargeclearfight;
+                } else if (lutemon instanceof Pink) {
+                    pic = R.drawable.pinklargeclearfight;
+                } else if (lutemon instanceof White) {
+                    pic = R.drawable.whitelargeclearfight;
+                } else {
+                    pic = lutemon.getImage();
+                }
+                break;
+            case "fightFlipped":
+                if (lutemon instanceof Black) {
+                    pic = R.drawable.blacklargeclearfightflipped;
+                } else if (lutemon instanceof Green) {
+                    pic = R.drawable.greenlargeclearfightflipped;
+                } else if (lutemon instanceof Orange) {
+                    pic = R.drawable.orangelargeclearfightflipped;
+                } else if (lutemon instanceof Pink) {
+                    pic = R.drawable.pinklargeclearfightflipped;
+                } else if (lutemon instanceof White) {
+                    pic = R.drawable.whitelargeclearfightflipped;
+                } else {
+                    pic = lutemon.getImage();
+                }
+                break;
+            case "dead":
+                pic = R.drawable.ripimage;
+                /*
+                if (lutemon instanceof Black) {
+                    pic = R.drawable.blacklargeclearflipped;
+                } else if (lutemon instanceof Green) {
+                    pic = R.drawable.greenlargeclearflipped;
+                } else if (lutemon instanceof Orange) {
+                    pic = R.drawable.orangelargeclearflipped;
+                } else if (lutemon instanceof Pink) {
+                    pic = R.drawable.pinklargeclearflipped;
+                } else if (lutemon instanceof White) {
+                    pic = R.drawable.whitelargeclearflipped;
+                } else {
+                    pic = lutemon.getImage();
+                }*/
+                break;
+            case "winner":
+                pic = R.drawable.winner;
+                /*if (lutemon instanceof Black) {
+                    pic = R.drawable.blacklargeclearflipped;
+                } else if (lutemon instanceof Green) {
+                    pic = R.drawable.greenlargeclearflipped;
+                } else if (lutemon instanceof Orange) {
+                    pic = R.drawable.orangelargeclearflipped;
+                } else if (lutemon instanceof Pink) {
+                    pic = R.drawable.pinklargeclearflipped;
+                } else if (lutemon instanceof White) {
+                    pic = R.drawable.whitelargeclearflipped;
+                } else {
+                    pic = lutemon.getImage();
+                }*/
+                break;
+
+            //flipped basic image
+            case "flipped":
+                if (lutemon instanceof Black) {
+                    pic = R.drawable.blacklargeclearflipped;
+                } else if (lutemon instanceof Green) {
+                    pic = R.drawable.greenlargeclearflipped;
+                } else if (lutemon instanceof Orange) {
+                    pic = R.drawable.orangelargeclearflipped;
+                } else if (lutemon instanceof Pink) {
+                    pic = R.drawable.pinklargeclearflipped;
+                } else if (lutemon instanceof White) {
+                    pic = R.drawable.whitelargeclearflipped;
+                } else {
+                    pic = lutemon.getImage();
+                }
+                break;
+            //basic image
+            default:
+                if (lutemon instanceof Black) {
+                    pic = R.drawable.blacklargeclear;
+                } else if (lutemon instanceof Green) {
+                    pic = R.drawable.greenlargeclear;
+                } else if (lutemon instanceof Orange) {
+                    pic = R.drawable.orangelargeclear;
+                } else if (lutemon instanceof Pink) {
+                    pic = R.drawable.pinklargeclear;
+                } else if (lutemon instanceof White) {
+                    pic = R.drawable.whitelargeclear;
+                } else {
+                    pic = lutemon.getImage();
+                }
+                break;
+
+        }
+
+        return pic;
+
+    }
+
 
 
 }
