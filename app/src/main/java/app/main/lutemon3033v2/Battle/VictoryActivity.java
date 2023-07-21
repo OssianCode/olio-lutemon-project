@@ -49,16 +49,7 @@ public class VictoryActivity extends AppCompatActivity implements View.OnClickLi
 
         if (winner != null) {
 
-
-            if (winner instanceof Black) {
-                imgWinner.setImageResource(R.drawable.blacklargeclear);
-            }
-            else {
-
-                imgWinner.setImageResource(winner.getImage());
-            }
-
-
+            imgWinner.setImageResource(winner.getImage());
 
             String winnerStats = winner.getName() + "\n";
             winnerStats += "HP: " + winner.getHealth() + " / " + winner.getMaxHealth() + "\n" ;

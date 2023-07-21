@@ -50,7 +50,7 @@ public class NewLutemonActivity extends AppCompatActivity {
         Lutemon lutemon = null;
 
         if (name.equals("")) {
-            name = "Lutemon" + (int) (Math.random()*10);
+            name = "Lute" + (int) (Math.random()*10);
         }
 
         switch (selectedColor) {

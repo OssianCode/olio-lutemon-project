@@ -47,18 +47,11 @@ public class DefeatActivity extends AppCompatActivity implements View.OnClickLis
 
         if (loser != null) {
 
-            if (loser instanceof Black) {
-                imgLoser.setImageResource(R.drawable.blacklargeclear);
-            }
-            else {
-
-                imgLoser.setImageResource(loser.getImage());
-            }
-
-
+            imgLoser.setImageResource(loser.getImage());
 
             String loserStats = loser.getName() + "\n";
             loserStats += "HP: " + loser.getHealth() + " / " + loser.getMaxHealth() + "\n" ;
+            loserStats += "XP: " + loser.getExperience() + "\n" ;
             loserStats += "Total Defeats: " + loser.getLoses() ;
 
             txtLoserStats.setText(loserStats);
