@@ -53,7 +53,7 @@ public class VictoryActivity extends AppCompatActivity implements View.OnClickLi
 
             String winnerStats = winner.getName() + "\n";
             winnerStats += "HP: " + winner.getHealth() + " / " + winner.getMaxHealth() + "\n" ;
-            winnerStats += "+ 1 XP!" + "\n" ;
+            winnerStats += "+ 1 XP! + 1 MaxHP! +  1 Defence!" + "\n" ;
             winnerStats += "Total XP: " + winner.getExperience()+ "\n" ;
             winnerStats += "Total Victories: " + winner.getVictories() ;
 

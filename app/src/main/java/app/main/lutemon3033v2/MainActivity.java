@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import app.main.lutemon3033v2.Areas.BattleField;

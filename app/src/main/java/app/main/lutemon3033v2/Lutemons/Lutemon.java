@@ -42,8 +42,8 @@ public class Lutemon implements Serializable {
 
         System.out.println("Lutemon " + name + " defends with power " + defence);
 
-        defenceTxt += lutemon.getName() + " attacks " + name + " with attack power " + attackPower + "\n";
-        defenceTxt += "Lutemon " + name + " defends with power " + defence + " \n";
+        defenceTxt += lutemon.getName() + " attacks with power " + attackPower + "\n";
+        defenceTxt += name + " defends with power " + defence + " \n";
 
         if (damage > 0 ) {
 
@@ -55,13 +55,13 @@ public class Lutemon implements Serializable {
 
             System.out.println("Total damage to Lutemon " + name + " is " + damage + " (HP: " + health + "/" + maxHealth + ")" );
 
-            defenceTxt += "Total damage to Lutemon " + name + " is " + damage + " (HP: " + health + "/" + maxHealth + ")" + "\n";
+            defenceTxt += "Damage to " + name + " is " + damage + "\n";
 
         }
         else {
             System.out.println("Lutemon " + lutemon.getName() + " missed");
 
-            defenceTxt += "Lutemon " + lutemon.getName() + " missed" + " \n";
+            defenceTxt += lutemon.getName() + " missed!" + " \n";
         }
 
         //System.out.println("Lutemon " + name + " health is " + health);
@@ -137,5 +137,17 @@ public class Lutemon implements Serializable {
     }
     public void setLoses(int loses) {
         this.loses = loses;
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public void setDefence(int defence) {
+        this.defence = defence;
     }
 }

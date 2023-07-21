@@ -20,6 +20,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/txtRound"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Round 1"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLutAStats" />
+
+    <TextView
+        android:id="@+id/txtAtoB"
+        android:layout_width="215dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="13dp"
+        android:text="A attacks B"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtRound" />
+
     <ImageView
         android:id="@+id/imgLutemonA"
         android:layout_width="100dp"
@@ -57,14 +81,16 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/txtBattleText"
-        android:layout_width="330dp"
+        android:id="@+id/txtBtoA"
+        android:layout_width="309dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="8dp"
+        android:text="B Attacks A"
+        android:textAlignment="textEnd"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtLutAStats" />
+        app:layout_constraintTop_toBottomOf="@+id/txtRound" />
 
     <TextView
         android:id="@+id/txtLutAStats"

@@ -23,17 +23,19 @@ public class InfoActivity extends AppCompatActivity {
 
         String instructions = "";
 
-        instructions = "Gallery: Delete buried Lutemons from Gravestone image. \n" ;
-        instructions += "Home: Create new Lutemons, move Lutemons. \n";
-        instructions += "Training Arena: Train Lutemons, move Lutemons. \n";
-        instructions += "Battle Field: Select 2 Lutemons for a battle, move Lutemons. \n";
-        instructions += "Battle Field: Choose first Lutemon, click Battle. \n";
-        instructions += "Battle Field: Choose second Lutemon, click Battle. \n";
-        instructions += "Battle Field: The battle begins. Follow button actions. \n";
-        instructions += "Defeat: Move Lutemon back Home, to gain full health. \n";
+        instructions = "Gallery: Gravestone: Delete Lutemon. \n" ;
+        instructions += "Home: Create, move, instructions. \n";
+        instructions += "Training Arena: Train, move. \n";
+        instructions += "Battle Field: Select 2 Lutemons to battle, move. \n";
+        instructions += "Battle Field: Choose 1st Lutemon, click Battle. \n";
+        instructions += "Battle Field: Choose 2nd Lutemon, click Battle. \n";
+        instructions += "Battle Field: Battle: Follow button actions. \n";
+        instructions += "Defeat: Move Lutemon Home to gain full health. \n";
         instructions += "Defeat: Or bury Lutemon to Graveyard. Buried Lutemons can be deleted from Gallery. \n";
-        instructions += "Victory: Move winner back Home, to gain full health. \n";
-        instructions += "Victory: Or return winner back to Battle Field. \n";
+        instructions += "Victory: Prize: +1 XP, +1 MaxHP, +1 Defence point. \n";
+        instructions += "Victory: Move winner Home to gain full health. \n";
+        instructions += "Victory: Or return winner to Battle Field. \n";
+        instructions += "Hint: Choose the weaker Lutemon to Battle first. They hit first. \n";
 
 
         infoTxt.setText(instructions);
