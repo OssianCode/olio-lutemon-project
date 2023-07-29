@@ -29,7 +29,7 @@ public class InfoActivity extends AppCompatActivity {
         instructions += "Battle Field: Select 2 Lutemons to battle, move. \n";
         instructions += "Battle Field: Choose 1st Lutemon, click Battle. \n";
         instructions += "Battle Field: Choose 2nd Lutemon, click Battle. \n";
-        instructions += "Battle Field: Battle: Follow button actions. \n";
+        instructions += "Battle: Follow button actions. \n";
         instructions += "Defeat: Move Lutemon Home to gain full health. \n";
         instructions += "Defeat: Or bury Lutemon to Graveyard. Buried Lutemons can be deleted from Gallery. \n";
         instructions += "Victory: Prize: +1 XP, +1 MaxHP, +1 Defence point. \n";

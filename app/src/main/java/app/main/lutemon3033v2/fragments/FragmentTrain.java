@@ -40,6 +40,7 @@ public class FragmentTrain extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_train, container, false);
 
+        //TODO: info +1 xp when trained
         makeRadioButtons(view);
 
         makeButtonOnClic(view);
